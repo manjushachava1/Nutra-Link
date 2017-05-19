@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:fontFamily="casual"
+        android:orientation="vertical"
+        android:background="#FFFFFF" >
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#64AC30"
+        android:fontFamily="casual"
+        android:text="Food Search"
+        android:minHeight="?attr/actionBarSize"
+        android:theme="?attr/actionBarTheme" />
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#FFFFFF"
+        android:fontFamily="casual"
+        android:text="Food Search"
+        android:minHeight="10dp"
+        android:theme="?attr/actionBarTheme" />
+
+    <ExpandableListView
+    android:id="@+id/lvExp"
+    android:layout_height="match_parent"
+    android:fontFamily="casual"
+    android:layout_width="match_parent"/>
+
+</LinearLayout>
