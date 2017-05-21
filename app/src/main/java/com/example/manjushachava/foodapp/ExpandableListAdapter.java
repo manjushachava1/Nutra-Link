@@ -34,18 +34,38 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
     }
 
 
-
+    /**
+     * Gets the child object at the child position
+     * @param groupPosition
+     * @param childPosititon
+     *
+     */
     @Override
     public Object getChild(int groupPosition, int childPosititon) {
         return this._listDataChild.get(this._listDataHeader.get(groupPosition))
                 .get(childPosititon);
     }
 
+    /**
+     * Gets the child id at the child position
+     * @param groupPosition
+     * @param childPosition
+     *
+     */
     @Override
     public long getChildId(int groupPosition, int childPosition) {
         return childPosition;
     }
 
+    /**
+     * Gets the child view at positions
+     * @param groupPosition
+     * @param childPosition
+     * @param isLastChild
+     * @param convertView
+     * @param parent
+     *
+     */
     @Override
     public View getChildView(int groupPosition, final int childPosition,
                              boolean isLastChild, View convertView, ViewGroup parent) {
@@ -65,27 +85,53 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
         return convertView;
     }
 
+    /**
+     * Gets the child count based on group position
+     * @param groupPosition
+     *
+     */
     @Override
     public int getChildrenCount(int groupPosition) {
         return this._listDataChild.get(this._listDataHeader.get(groupPosition))
                 .size();
     }
 
+    /**
+     * Gets the group based on group position
+     * @param groupPosition
+     *
+     */
     @Override
     public Object getGroup(int groupPosition) {
         return this._listDataHeader.get(groupPosition);
     }
 
+    /**
+     * @return the group count based on group position
+     *
+     */
     @Override
     public int getGroupCount() {
         return this._listDataHeader.size();
     }
 
+    /**
+     * @return the group count based on group position
+     *
+     */
     @Override
     public long getGroupId(int groupPosition) {
         return groupPosition;
     }
 
+    /**
+     * Gets the view of the group
+     * @param convertView
+     * @param parent
+     * @param groupPosition
+     * @param isExpanded
+     * @return the view
+     */
     @Override
     public View getGroupView(int groupPosition, boolean isExpanded,
                              View convertView, ViewGroup parent) {
@@ -104,11 +150,22 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
         return convertView;
     }
 
+    /**
+     * Checks if listView has stable id
+     * @return false
+     *
+     */
     @Override
     public boolean hasStableIds() {
         return false;
     }
 
+    /**
+     * Checks if the child is selectable at certain positions
+     * @param groupPosition
+     * @param childPosition
+     *
+     */
     @Override
     public boolean isChildSelectable(int groupPosition, int childPosition) {
         return true;
