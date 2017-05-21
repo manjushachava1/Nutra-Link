@@ -10,7 +10,7 @@ public class Proximates1 {
     private double fiber;
     private double sugar;
     /**
-     * creates an instance of the Proximates 1 object
+     * creates an empty constructor of the Proximates1 object
      */
     public Proximates1() {
 

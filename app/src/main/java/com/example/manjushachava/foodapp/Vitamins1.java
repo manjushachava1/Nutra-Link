@@ -29,7 +29,7 @@ public class Vitamins1 {
 
 
 	/**
-	 * creates an instance of the Vitamins1 class
+	 * creates an empty constructor of the Vitamins1 class
 	 */
 	public Vitamins1() {
 

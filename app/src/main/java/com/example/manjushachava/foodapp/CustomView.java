@@ -14,8 +14,9 @@ public class CustomView extends ArrayAdapter<String> {
     private final Context context;
     private final String[] values;
 
+
     public CustomView(Context context, String[] values) {
-        super(context, R.layout.list_activity, values);
+        super(context, R.layout.activity_top_ten_view, values);
         this.context = context;
         this.values = values;
     }
@@ -26,20 +27,20 @@ public class CustomView extends ArrayAdapter<String> {
         LayoutInflater inflater = (LayoutInflater) context
                 .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
-        View rowView = inflater.inflate(R.layout.list_activity, parent, false);
+        View rowView = inflater.inflate(R.layout.activity_top_ten_view, parent, false);
         TextView tv = (TextView) rowView.findViewById(R.id.label);
         String item_value = values[position];
 
         tv.setText(item_value);
 
         for(int i = 0; i < 10; i++){
-            rowView.setBackgroundColor(Color.parseColor("#64AC30");
+            rowView.setBackgroundColor(Color.parseColor("#64AC30"));
         }
 
         if (position % 2 == 0) {
             rowView.setBackgroundColor(Color.parseColor("#FFFFFF"));
         } else {
-            rowView.setBackgroundColor(Color.parseColor("#64AC30");
+            rowView.setBackgroundColor(Color.parseColor("#64AC30"));
         }
         return rowView;
     }

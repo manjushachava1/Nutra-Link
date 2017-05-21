@@ -7,7 +7,7 @@ public class Lipids1 {
 	private double cholestrl;
 
 	/**
-	 * creates an instance of the Lipids1 object
+	 * creates an empty constructor of the Lipids1 object
 	 */
 	public Lipids1() {
 

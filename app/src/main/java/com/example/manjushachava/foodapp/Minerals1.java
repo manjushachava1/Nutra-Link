@@ -14,7 +14,7 @@ public class Minerals1 {
 
 
 	/**
-	 * Creates an instance of the Mineral1 Object
+	 * Creates an empty constructor of the Mineral1 Object
 	 */
 	public Minerals1() {
 
