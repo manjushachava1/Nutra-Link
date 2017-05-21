@@ -104,8 +104,8 @@ public class NutrientSearch extends Activity {
         });
     }
 
-    /*
-     * Preparing the list data
+    /**
+     * Prepares the list data for the expandable listView
      */
     private void prepareListData() {
         listDataHeader = new ArrayList<String>();

@@ -45,10 +45,12 @@ public class nutrientsView extends AppCompatActivity {
         mToolbar = (Toolbar) findViewById(R.id.toolbar);
         String name = bundle.getString("FoodName");
 
+        //checks if bundle is empty and sets the toolbar name as the name passed in by the user
         if(bundle != null){
             mToolbar.setTitle(name);
         }
 
+        //creates an instance of the Controller class to set the user name
         final Controller aController = (Controller) getApplicationContext();
         aController.setUserName(name);
         Food1 food = aController.searchFood(name);
@@ -65,6 +67,10 @@ public class nutrientsView extends AppCompatActivity {
         tabLayout.setupWithViewPager(mViewPager);
     }
 
+    /**
+     * Creates a ViewPager that allows the user to swipe left or right onto different fragment tabs
+     * @param viewPager allows the user to swipe left or right onto fragment tabs
+     */
     private void setupViewPager(ViewPager viewPager) {
         SectionsPageAdapter adapter = new SectionsPageAdapter(getSupportFragmentManager());
         adapter.addFragment(new Tab1Fragment(), "Vitamin");

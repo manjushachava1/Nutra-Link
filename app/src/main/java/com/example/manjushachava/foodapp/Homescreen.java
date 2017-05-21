@@ -18,7 +18,11 @@ public class Homescreen extends AppCompatActivity {
         private Button SearchProduce;
         private Button SearchNutrient;
 
-        public void init(){
+
+    /**
+     * Initializes the search produce activity once a button is clicked
+     */
+        public void initProdAct(){
             SearchProduce = (Button)findViewById(R.id.SearchProduce);
             SearchProduce.setOnClickListener(new View.OnClickListener(){
                 @Override
@@ -30,7 +34,10 @@ public class Homescreen extends AppCompatActivity {
             });
         }
 
-        public void init1(){
+    /**
+     * Initializes the search nutrient activity once a button is clicked
+     */
+        public void initNutrAct(){
             SearchNutrient = (Button)findViewById(R.id.SearchNutrient);
             SearchNutrient.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -47,12 +54,14 @@ public class Homescreen extends AppCompatActivity {
         protected void onCreate(Bundle savedInstanceState){
             super.onCreate(savedInstanceState);
             setContentView(R.layout.activity_homescreen);
-            init();
-            init1();
+
+            //sends to next activity once buttons are pressed
+            initProdAct();
+            initNutrAct();
 
 
 
-            //use parseData1 method that populates an arraylist
+           //starts parsing data from .csv to populate arrayList of food objects
             try {
                 Log.i("Jack","Entered try ");
                 InputStream input = getAssets().open("TestVegFruits.csv");

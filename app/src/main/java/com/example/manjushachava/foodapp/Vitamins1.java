@@ -423,11 +423,4 @@ public class Vitamins1 {
 	 *
 	 * @return the total amount of vitamins
 	 */
-//	public double getTotalVitamins(){
-//		double total = getApha_carot()+getBeta_carot()+getBeta_crypt()+getCholine_tot()+getFolate_tot()+getFolic_acid()
-//				+getFood_folate()+getFood_folate_dfe()+getLut_zea()+getLycopene()+getNiacin()+getPanto_acid()
-//				+getRetinol()+getRiboflavin()+getThiamin()+getVit_k()+getVit_e()+getVit_d_ug()+getVit_c()
-//				+getVit_b12()+getVit_b6()+getVit_d_iu()+getVit_a_rae();
-//		return total;
-//	}
 }

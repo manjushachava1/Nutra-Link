@@ -19,12 +19,21 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
     // child data in format of header title, child title
     private HashMap<String, List<String>> _listDataChild;
 
+    /**
+     * Constructor that accepts a context, list of strings, and hashMaps of strings
+     * @param context
+     * @param listDataHeader
+     * @param listChildData
+     *
+     */
     public ExpandableListAdapter(Context context, List<String> listDataHeader,
                                  HashMap<String, List<String>> listChildData) {
         this._context = context;
         this._listDataHeader = listDataHeader;
         this._listDataChild = listChildData;
     }
+
+
 
     @Override
     public Object getChild(int groupPosition, int childPosititon) {

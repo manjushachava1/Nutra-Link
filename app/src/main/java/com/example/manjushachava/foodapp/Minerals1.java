@@ -165,7 +165,7 @@ public class Minerals1 {
 
 	/**
 	 *
-	 * @return the amount of selenium,
+	 * @return the amount of selenium
 	 */
 	public double getSelenium() {
 		return selenium;

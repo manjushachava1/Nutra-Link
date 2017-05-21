@@ -51,8 +51,11 @@ public class Tab1Fragment extends Fragment {
 //            }
 //        });
 
+        //creates an instance of the Controller class and gets the user input
         final Controller aController = (Controller) getContext().getApplicationContext();
         String name = aController.getUserName();
+
+        //searches for the food object from the user input
         Food1 food = aController.searchFood(name);
 
             xData.add("Vitamin C");
@@ -141,6 +144,11 @@ public class Tab1Fragment extends Fragment {
         return view;
 
     }
+
+    /**
+     * Adds data and sets the features to the pie chart
+     *
+     */
     private void addDataSet(){
         Log.d(TAG,"addDataSet started");
         ArrayList<PieEntry> yEntry = new ArrayList<>();
@@ -183,6 +191,12 @@ public class Tab1Fragment extends Fragment {
         pieChart.setData(pieData);
         pieChart.invalidate();
     }
+
+    /**
+     * Creates an array of vitamin data from an arrayList
+     * @param vitaminData an arrayList of doubles
+     *
+     */
     public void createArrayVitamins(ArrayList<Double> vitaminData){
         int sizeOfList = vitaminData.size();
         float[] arrVit = new float[sizeOfList];

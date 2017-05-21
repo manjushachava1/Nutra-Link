@@ -34,6 +34,13 @@ public class FoodSearch extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_food_search);
 
+        toolbar = (Toolbar) findViewById(R.id.toolbar2);
+        toolbar.setTitle("Search Food");
+        ListView lv = (ListView) findViewById(R.id.listView1);
+        SearchView sv = (SearchView) findViewById(R.id.searchView1);
+
+
+        //Creates an instance of the Controller class and populates the empty foodList arrayList
         final Controller aController = (Controller) getApplicationContext();
         ArrayList<Food1> foodList = aController.getFoodList();
 
@@ -42,19 +49,12 @@ public class FoodSearch extends AppCompatActivity {
         }
         createArrayNames(foodNames);
 
-        /**************************************SEARCH BAR FUNCTIONALITY***************************************************/
 
-        toolbar = (Toolbar) findViewById(R.id.toolbar2);
-        toolbar.setTitle("Search Food");
-        ListView lv = (ListView) findViewById(R.id.listView1);
-        SearchView sv = (SearchView) findViewById(R.id.searchView1);
-
-
-        /**************************************SENDS TO NEXT ACTIVITY***************************************************/
         //Sets the values in the ListView to be the values in the Array
         final ListView myList = (ListView) findViewById(R.id.listView1);
         myList.setAdapter(adapter);
 
+        //Sends to next activity
         myList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
@@ -67,7 +67,8 @@ public class FoodSearch extends AppCompatActivity {
         //Creates ListView
         adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, arrFoodNames);
 
-        //Checks user text input
+        /**************************************SEARCH BAR FUNCTIONALITY***************************************************/
+        //Checks to see if the inputted food name matches any of the food names in the listView
         lv.setAdapter(adapter);
         sv.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
@@ -83,6 +84,7 @@ public class FoodSearch extends AppCompatActivity {
                 return false;
             }
 
+            //Filters food names based on the user input
             @Override
             public boolean onQueryTextChange(String text) {
                 adapter.getFilter().filter(text);
@@ -92,6 +94,11 @@ public class FoodSearch extends AppCompatActivity {
 
     }
 
+    /**
+     * Creates an array of food names from an arrayList
+     * @param foodNames an arrayList of strings
+     *
+     */
     public void createArrayNames(ArrayList<String> foodNames){
         int sizeOfList = foodNames.size();
         String[] foodNamesArr = new String[sizeOfList];

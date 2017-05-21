@@ -54,15 +54,18 @@ public class Tab4Fragment extends Fragment {
     private PieChart pieChart;
     ArrayList<Double> yData = new ArrayList<>();
     ArrayList<String> xData = new ArrayList<>();
-    private float[] arrVitData;
+    private float[] arrLipData;
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.tab4_fragment, container, false);
 
+        //creates an instance of the Controller class and gets the user input
         final Controller aController = (Controller) getContext().getApplicationContext();
         String name = aController.getUserName();
+
+        //searches for the food object from the user input
         Food1 food = aController.searchFood(name);
 
         xData.add("Fatty Acids, Saturated");
@@ -112,13 +115,17 @@ public class Tab4Fragment extends Fragment {
 
     }
 
+    /**
+     * Adds data and sets the features to the pie chart
+     *
+     */
     private void addDataSet(){
         Log.d(TAG,"addDataSet started");
         ArrayList<PieEntry> yEntry = new ArrayList<>();
         ArrayList<String> xEntry = new ArrayList<>();
 
-        for(int i = 0; i < arrVitData.length; i++){
-            yEntry.add(new PieEntry(arrVitData[i],i));
+        for(int i = 0; i < arrLipData.length; i++){
+            yEntry.add(new PieEntry(arrLipData[i],i));
         }
 
         for(int i = 1; i < xData.size(); i++){
@@ -153,12 +160,18 @@ public class Tab4Fragment extends Fragment {
         pieChart.setData(pieData);
         pieChart.invalidate();
     }
-    public void createArrayVitamins(ArrayList<Double> vitaminData) {
-        int sizeOfList = vitaminData.size();
-        float[] arrVit = new float[sizeOfList];
-        for (int i = 0; i < arrVit.length; i++) {
-            arrVit[i] = Double.valueOf(vitaminData.get(i)).floatValue();
+
+    /**
+     * Creates an array of lipid data from an arrayList
+     * @param lipidData an arrayList of doubles
+     *
+     */
+    public void createArrayVitamins(ArrayList<Double> lipidData) {
+        int sizeOfList = lipidData.size();
+        float[] arrLip = new float[sizeOfList];
+        for (int i = 0; i < arrLip.length; i++) {
+            arrLip[i] = Double.valueOf(lipidData.get(i)).floatValue();
         }
-        arrVitData = arrVit;
+        arrLipData = arrLip;
     }
 }
