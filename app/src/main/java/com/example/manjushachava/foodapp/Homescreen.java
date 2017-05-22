@@ -63,7 +63,6 @@ public class Homescreen extends AppCompatActivity {
 
            //starts parsing data from .csv to populate arrayList of food objects
             try {
-                Log.i("Jack","Entered try ");
                 InputStream input = getAssets().open("TestVegFruits.csv");
                 ParseData1 parsedFile = new ParseData1(input);
                 foodList = parsedFile.allFoods();
@@ -73,8 +72,6 @@ public class Homescreen extends AppCompatActivity {
                     foodNames.add(foodList.get(i).getName());
                 }
 
-
-                Log.i("Jack","Instantiating Controller");
                 final Controller aController = (Controller) getApplicationContext();
                 aController.setFoodList(foodList);
 

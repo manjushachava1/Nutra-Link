@@ -2,7 +2,6 @@ package com.example.manjushachava.foodapp;
 
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -12,13 +11,10 @@ import android.widget.AdapterView;
 import android.widget.SearchView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
-import android.widget.TextView;
 import android.widget.Toast;
 
 
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
 
 
 public class FoodSearch extends AppCompatActivity {
@@ -49,6 +45,8 @@ public class FoodSearch extends AppCompatActivity {
         }
         createArrayNames(foodNames);
 
+        //Creates ListView
+        adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, arrFoodNames);
 
         //Sets the values in the ListView to be the values in the Array
         final ListView myList = (ListView) findViewById(R.id.listView1);
@@ -64,8 +62,6 @@ public class FoodSearch extends AppCompatActivity {
             }
         });
 
-        //Creates ListView
-        adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, arrFoodNames);
 
         /**************************************SEARCH BAR FUNCTIONALITY***************************************************/
         //Checks to see if the inputted food name matches any of the food names in the listView

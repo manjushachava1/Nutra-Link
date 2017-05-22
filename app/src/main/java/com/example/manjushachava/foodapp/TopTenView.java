@@ -1,45 +1,60 @@
 package com.example.manjushachava.foodapp;
 
-import android.support.v7.app.AppCompatActivity;
+import android.app.Activity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
-import android.widget.ListView;
-import android.app.ListActivity;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
 import android.widget.Toast;
 
 
-public class TopTenView extends ListActivity {
+import java.util.ArrayList;
+
+import static com.example.manjushachava.foodapp.R.id.toolbar;
+import static com.example.manjushachava.foodapp.R.id.list;
+
+
+public class TopTenView extends Activity {
 
     Toolbar mToolbar;
-    String[] mob = new String[]{"Item 0", "Item 1", "Item 2", "Item 3", "Item 4", "Item 5", "Item 6"};
+    ArrayAdapter adapter;
+    String[] mob = new String[]{"Food 0", "Food 1", "Food 2", "Food 3", "Food 4", "Food 5", "Food 6"};
+    String[] topTen;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_top_ten_view);
 
-        CustomView cv = new CustomView(this, mob);
-        setListAdapter(cv);
-
+        mToolbar = (Toolbar) findViewById(R.id.toolbar2);
+        mToolbar.setTitle("Top Ten");
 
         Bundle bundle = getIntent().getExtras();
-        mToolbar = (Toolbar) findViewById(R.id.toolbar2);
-        String name = bundle.getString("TopTenView");
+        bundle.getString("TopTenView");
 
-        if (bundle != null) {
-            mToolbar.setTitle(name);
-        }
-    }
+        //Creates an instance of the Controller class and populates the empty foodList arrayList
+        final Controller aController = (Controller) getApplicationContext();
+        ArrayList<Food1> foodList = aController.getFoodList();
 
-    @Override
-    protected void onListItemClick(ListView l, View v, int position, long id) {
+        //Creates ListView
+        adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, mob);
 
-        super.onListItemClick(l, v, position, id);
+        //Sets the values in the ListView to be the values in the Array
+        final ListView myList = (ListView) findViewById(R.id.list);
+        myList.setAdapter(adapter);
 
-        // getting the value of clicked item
-        String clicked_item = (String) getListAdapter().getItem(position);
-        Toast.makeText(this, "You clicked : " + clicked_item,
-                Toast.LENGTH_SHORT).show();
+        //Sends to next activity
+        myList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
+                // getting the value of clicked Food
+                String clicked_item = "Stuff";
+                Toast.makeText(getApplicationContext(),
+                        "You clicked : " + clicked_item, Toast.LENGTH_SHORT)
+                        .show();
+            }
+        });
     }
 }
