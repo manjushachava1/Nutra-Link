@@ -142,7 +142,7 @@ public class Tab3Fragment extends Fragment {
         //create the data set
         PieDataSet pieDataSet = new PieDataSet(yEntry,"Proximates");
         pieDataSet.setSliceSpace(1);
-        pieDataSet.setValueTextSize(10);
+        pieDataSet.setValueTextSize(14);
 
 
         ArrayList<Integer> colors = new ArrayList<>();

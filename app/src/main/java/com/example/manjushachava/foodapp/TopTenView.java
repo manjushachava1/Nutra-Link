@@ -50,7 +50,7 @@ public class TopTenView extends Activity {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
                 // getting the value of clicked Food
-                String clicked_item = "Stuff";
+                String clicked_item = "Food";
                 Toast.makeText(getApplicationContext(),
                         "You clicked : " + clicked_item, Toast.LENGTH_SHORT)
                         .show();

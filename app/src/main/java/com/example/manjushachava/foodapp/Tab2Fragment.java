@@ -144,7 +144,7 @@ public class Tab2Fragment extends Fragment {
         //create the data set
         PieDataSet pieDataSet = new PieDataSet(yEntry,"Minerals");
         pieDataSet.setSliceSpace(1);
-        pieDataSet.setValueTextSize(10);
+        pieDataSet.setValueTextSize(14);
 
 
         ArrayList<Integer> colors = new ArrayList<>();
