@@ -12,8 +12,6 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 
-import static com.example.manjushachava.foodapp.R.id.toolbar;
-import static com.example.manjushachava.foodapp.R.id.list;
 
 
 public class TopTenView extends Activity {
