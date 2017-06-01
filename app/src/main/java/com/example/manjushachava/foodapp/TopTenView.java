@@ -1,8 +1,7 @@
 package com.example.manjushachava.foodapp;
 
-import android.app.Activity;
 import android.os.Bundle;
-import android.support.v7.widget.Toolbar;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -11,12 +10,11 @@ import android.widget.Toast;
 
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 
+public class TopTenView extends AppCompatActivity {
 
-public class TopTenView extends Activity {
-
-    Toolbar mToolbar;
     ArrayAdapter adapter;
     String[] mob = new String[]{"Food 0", "Food 1", "Food 2", "Food 3", "Food 4", "Food 5", "Food 6"};
     String[] topTen;
@@ -26,11 +24,11 @@ public class TopTenView extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_top_ten_view);
 
-        mToolbar = (Toolbar) findViewById(R.id.toolbar2);
-        mToolbar.setTitle("Top Ten");
-
         Bundle bundle = getIntent().getExtras();
-        bundle.getString("TopTenView");
+        String name = bundle.getString("TopTenView");
+
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setTitle("Top Ten Foods with "+name);
 
         //Creates an instance of the Controller class and populates the empty foodList arrayList
         final Controller aController = (Controller) getApplicationContext();
@@ -54,5 +52,16 @@ public class TopTenView extends Activity {
                         .show();
             }
         });
+    }
+    public void compareAllFoods(String nutrient){
+        boolean cond = true;
+        ArrayList<Food1> water = new ArrayList<>();
+        while(cond == true) {
+            Food1 food = new Food1();
+            for(int i = 0; i < 10; i++){
+                water.get(i);
+
+            }
+        }
     }
 }

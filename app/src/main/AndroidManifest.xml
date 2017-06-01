@@ -17,10 +17,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".NutrientSearch" />
-        <activity android:name=".FoodSearch" />
-        <activity android:name=".nutrientsView" />
-        <activity android:name=".TopTenView"></activity>
+        <activity android:name=".NutrientSearch" android:parentActivityName=".Homescreen"/>
+        <activity android:name=".FoodSearch" android:parentActivityName=".Homescreen"/>
+        <activity android:name=".TopTenView" android:parentActivityName=".nutrientsView"/>
+        <activity android:name=".nutrientsView" android:parentActivityName=".FoodSearch"/>
     </application>
 
 </manifest>

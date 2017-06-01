@@ -22,7 +22,6 @@ public class FoodSearch extends AppCompatActivity {
     private ArrayAdapter<String> adapter;
     private ArrayList<String> foodNames = new ArrayList<>();
     private String[] arrFoodNames;
-    Toolbar toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,8 +29,9 @@ public class FoodSearch extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_food_search);
 
-        toolbar = (Toolbar) findViewById(R.id.toolbar2);
-        toolbar.setTitle("Search Food");
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setTitle("Search Food");
+
         ListView lv = (ListView) findViewById(R.id.listView1);
         SearchView sv = (SearchView) findViewById(R.id.searchView1);
 

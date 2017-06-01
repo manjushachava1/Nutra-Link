@@ -24,6 +24,7 @@ public class Homescreen extends AppCompatActivity {
      */
         public void initProdAct(){
             SearchProduce = (Button)findViewById(R.id.SearchProduce);
+            getSupportActionBar().setTitle("NutraLink");
             SearchProduce.setOnClickListener(new View.OnClickListener(){
                 @Override
                 public void onClick(View v) {

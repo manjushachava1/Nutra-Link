@@ -9,17 +9,6 @@
     android:orientation="vertical"
     android:weightSum="1">
 
-
-    <android.support.v7.widget.Toolbar
-        android:id="@+id/toolbar2"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="#64AC30"
-        android:fontFamily="casual"
-        android:text="Top Ten"
-        android:minHeight="?attr/actionBarSize"
-        android:theme="?attr/actionBarTheme" />
-
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -32,7 +21,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentStart="true"
-            android:layout_below="@+id/toolbar"
             android:layout_marginTop="30dp"
             android:paddingBottom="10dp"
             android:background="#E94280"

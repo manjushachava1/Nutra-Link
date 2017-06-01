@@ -5,35 +5,30 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.widget.Toolbar;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ExpandableListView;
 import android.widget.ExpandableListView.OnChildClickListener;
 import android.widget.ExpandableListView.OnGroupClickListener;
-import android.widget.ExpandableListView.OnGroupCollapseListener;
 import android.widget.ExpandableListView.OnGroupExpandListener;
-import android.widget.SearchView;
 import android.widget.Toast;
 
-public class NutrientSearch extends Activity {
+public class NutrientSearch extends AppCompatActivity {
 
     ExpandableListAdapter listAdapter;
     ExpandableListView expListView;
     List<String> listDataHeader;
     HashMap<String, List<String>> listDataChild;
-    Toolbar toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_nutrient_search);
 
-
-        toolbar = (Toolbar) findViewById(R.id.toolbar2);
-        toolbar.setTitle("Search Nutrients");
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setTitle("Search Nutrients");
 
         // get the listview
         expListView = (ExpandableListView) findViewById(R.id.lvExp);
@@ -70,18 +65,6 @@ public class NutrientSearch extends Activity {
             }
         });
 
-        // Listview Group collasped listener
-        expListView.setOnGroupCollapseListener(new OnGroupCollapseListener() {
-
-            @Override
-            public void onGroupCollapse(int groupPosition) {
-                Toast.makeText(getApplicationContext(),
-                        listDataHeader.get(groupPosition) + " Collapsed",
-                        Toast.LENGTH_SHORT).show();
-
-            }
-        });
-
         // Listview on child click listener
         expListView.setOnChildClickListener(new OnChildClickListener() {
 
@@ -89,18 +72,14 @@ public class NutrientSearch extends Activity {
             public boolean onChildClick(ExpandableListView parent, View v,
                                         int groupPosition, int childPosition, long id) {
                 // TODO Auto-generated method stub
-                Toast.makeText(
-                        getApplicationContext(),
-                        listDataChild.get(
-                                listDataHeader.get(groupPosition)).get(
-                                childPosition), Toast.LENGTH_SHORT)
-                        .show();
+//                Toast.makeText(getApplicationContext(),listDataChild.get(listDataHeader.get(groupPosition)).get(childPosition),
+//                        Toast.LENGTH_SHORT).show();
 
                 Intent nextActivity = new Intent(NutrientSearch.this, TopTenView.class);
-                nextActivity.putExtra("TopTenView",expListView.getItemAtPosition(childPosition).toString());
+                nextActivity.putExtra("TopTenView",listDataChild.get(listDataHeader.get(groupPosition)).get(childPosition));
                 startActivity(nextActivity);
                 return false;
-            }
+            }//expListView.getItemAtPosition(childPosition).toString()
         });
     }
 
@@ -142,7 +121,6 @@ public class NutrientSearch extends Activity {
         proximate.add("Water");
         proximate.add("Energy");
         proximate.add("Protein");
-        proximate.add("Lipid");
         proximate.add("Ash");
         proximate.add("Carbohydrate");
         proximate.add("Fiber");

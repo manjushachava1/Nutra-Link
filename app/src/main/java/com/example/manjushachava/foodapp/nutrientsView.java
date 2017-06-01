@@ -26,15 +26,12 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Random;
 
-import static com.example.manjushachava.foodapp.R.id.toolbar;
-
 public class nutrientsView extends AppCompatActivity {
 
     private static final String TAG = "MainActivity";
 
     private SectionsPageAdapter mSectionsPageAdapter;
     private ViewPager mViewPager;
-    Toolbar mToolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,13 +39,16 @@ public class nutrientsView extends AppCompatActivity {
         setContentView(R.layout.activity_nutrients_view);
 
         Bundle bundle = getIntent().getExtras();
-        mToolbar = (Toolbar) findViewById(R.id.toolbar);
         String name = bundle.getString("FoodName");
+
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
 
         //checks if bundle is empty and sets the toolbar name as the name passed in by the user
         if(bundle != null){
-            mToolbar.setTitle(name);
+            getSupportActionBar().setTitle(name);
         }
+
 
         //creates an instance of the Controller class to set the user name
         final Controller aController = (Controller) getApplicationContext();

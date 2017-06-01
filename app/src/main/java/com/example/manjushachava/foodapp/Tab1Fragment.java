@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.Toast;
+import android.widget.Toolbar;
 
 import com.github.mikephil.charting.charts.PieChart;
 import com.github.mikephil.charting.components.Legend;
@@ -50,6 +51,7 @@ public class Tab1Fragment extends Fragment {
 //                startActivity(intent);
 //            }
 //        });
+
 
         //creates an instance of the Controller class and gets the user input
         final Controller aController = (Controller) getContext().getApplicationContext();
