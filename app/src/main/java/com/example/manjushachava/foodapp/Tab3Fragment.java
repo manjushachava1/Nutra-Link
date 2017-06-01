@@ -173,7 +173,7 @@ public class Tab3Fragment extends Fragment {
      * @param proximateData an arrayList of doubles
      *
      */
-    public void createArrayVitamins(ArrayList<Double> proximateData) {
+    private void createArrayVitamins(ArrayList<Double> proximateData) {
         int sizeOfList = proximateData.size();
         float[] arrProx = new float[sizeOfList];
         for (int i = 0; i < arrProx.length; i++) {

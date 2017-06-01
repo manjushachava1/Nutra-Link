@@ -53,7 +53,7 @@ public class TopTenView extends AppCompatActivity {
             }
         });
     }
-    public void compareAllFoods(String nutrient){
+    private void compareAllFoods(String nutrient){
         boolean cond = true;
         ArrayList<Food1> water = new ArrayList<>();
         while(cond == true) {

@@ -199,7 +199,7 @@ public class Tab1Fragment extends Fragment {
      * @param vitaminData an arrayList of doubles
      *
      */
-    public void createArrayVitamins(ArrayList<Double> vitaminData){
+    private void createArrayVitamins(ArrayList<Double> vitaminData){
         int sizeOfList = vitaminData.size();
         float[] arrVit = new float[sizeOfList];
         for(int i = 0; i < arrVit.length; i++){

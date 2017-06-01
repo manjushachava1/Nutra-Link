@@ -18,29 +18,38 @@
 //
 //
 //    public CustomView(Context context, String[] values) {
-//        super(context, R.layout.activity_top_ten_view, values);
+//        super(context, R.layout.activity_food_search, values);
 //        this.context = context;
 //        this.values = values;
 //    }
 //
 //    @Override
 //    public View getView(int position, View convertView, ViewGroup parent) {
-//        // TODO Auto-generated method stub
+//
+//        //Get Inflater object
 //        LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 //
-//        View rowView = inflater.inflate(R.layout.activity_top_ten_view, parent, false);
+//        //Inflate XML Layout to a single row
+//        View rowView = inflater.inflate(R.layout.activity_food_search, parent, false);
 //
 //        String item_value = values[position];
 //
-//
-//        for(int i = 0; i < values.length; i++){
-//            if(i < 10) {
-//                rowView.setBackgroundColor(Color.parseColor("#64AC30"));
-//            }
-//            else{
-//                rowView.setBackgroundColor(Color.parseColor("#FFFFFF"));
-//            }
+//        //Set alternating background colors
+//        if(position % 2 == 0){
+//            rowView.setBackgroundColor(Color.parseColor("#E94280"));
 //        }
+//        else{
+//            rowView.setBackgroundColor(Color.WHITE);
+//        }
+//
+////         for(int i = 0; i < values.length; i++){
+////            if(i < 10) {
+////                rowView.setBackgroundColor(Color.parseColor("#64AC30"));
+////            }
+////            else{
+////                rowView.setBackgroundColor(Color.parseColor("#FFFFFF"));
+////            }
+////        }
 //        return rowView;
 //    }
 //}

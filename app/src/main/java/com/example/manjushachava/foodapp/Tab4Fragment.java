@@ -166,7 +166,7 @@ public class Tab4Fragment extends Fragment {
      * @param lipidData an arrayList of doubles
      *
      */
-    public void createArrayVitamins(ArrayList<Double> lipidData) {
+    private void createArrayVitamins(ArrayList<Double> lipidData) {
         int sizeOfList = lipidData.size();
         float[] arrLip = new float[sizeOfList];
         for (int i = 0; i < arrLip.length; i++) {

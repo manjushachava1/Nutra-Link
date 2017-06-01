@@ -1,10 +1,10 @@
 package com.example.manjushachava.foodapp;
 
+import android.app.ListActivity;
 import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.Toolbar;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.AdapterView;
@@ -35,7 +35,6 @@ public class FoodSearch extends AppCompatActivity {
         ListView lv = (ListView) findViewById(R.id.listView1);
         SearchView sv = (SearchView) findViewById(R.id.searchView1);
 
-
         //Creates an instance of the Controller class and populates the empty foodList arrayList
         final Controller aController = (Controller) getApplicationContext();
         ArrayList<Food1> foodList = aController.getFoodList();
@@ -61,6 +60,7 @@ public class FoodSearch extends AppCompatActivity {
                         startActivity(nextActivity);
             }
         });
+
 
 
         /**************************************SEARCH BAR FUNCTIONALITY***************************************************/
@@ -95,7 +95,7 @@ public class FoodSearch extends AppCompatActivity {
      * @param foodNames an arrayList of strings
      *
      */
-    public void createArrayNames(ArrayList<String> foodNames){
+    private void createArrayNames(ArrayList<String> foodNames){
         int sizeOfList = foodNames.size();
         String[] foodNamesArr = new String[sizeOfList];
         for(int i = 0; i < foodNamesArr.length; i++){

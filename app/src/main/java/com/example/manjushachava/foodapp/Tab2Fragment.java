@@ -175,7 +175,7 @@ public class Tab2Fragment extends Fragment {
      * @param mineralData an arrayList of doubles
      *
      */
-    public void createArrayVitamins(ArrayList<Double> mineralData) {
+    private void createArrayVitamins(ArrayList<Double> mineralData) {
         int sizeOfList = mineralData.size();
         float[] arrMin = new float[sizeOfList];
         for (int i = 0; i < arrMin.length; i++) {

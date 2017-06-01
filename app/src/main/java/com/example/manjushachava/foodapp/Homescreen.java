@@ -22,7 +22,7 @@ public class Homescreen extends AppCompatActivity {
     /**
      * Initializes the search produce activity once a button is clicked
      */
-        public void initProdAct(){
+    private void initProdAct(){
             SearchProduce = (Button)findViewById(R.id.SearchProduce);
             getSupportActionBar().setTitle("NutraLink");
             SearchProduce.setOnClickListener(new View.OnClickListener(){
@@ -38,7 +38,7 @@ public class Homescreen extends AppCompatActivity {
     /**
      * Initializes the search nutrient activity once a button is clicked
      */
-        public void initNutrAct(){
+    private void initNutrAct(){
             SearchNutrient = (Button)findViewById(R.id.SearchNutrient);
             SearchNutrient.setOnClickListener(new View.OnClickListener() {
                 @Override
