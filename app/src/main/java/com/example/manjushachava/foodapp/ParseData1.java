@@ -57,7 +57,6 @@ public class ParseData1 {
             food.setVitamins(buildVitamins(split));
             food.setLipids(buildLipids(split));
             foods.add(food);
-            Log.i("Jack", "Exited while loop");
         }
 
         scan.close();
@@ -72,7 +71,6 @@ public class ParseData1 {
      */
     	private double setData(String[] split, int i) {
 		double number;
-        Log.i("Jack",split[i]);
 		if (split[i].isEmpty()) {
 			number = 0;
 		} else {

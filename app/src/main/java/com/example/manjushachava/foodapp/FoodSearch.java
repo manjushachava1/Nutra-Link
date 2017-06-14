@@ -1,6 +1,5 @@
 package com.example.manjushachava.foodapp;
 
-import android.app.ListActivity;
 import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
