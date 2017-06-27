@@ -66,6 +66,8 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     public static final String COL_47 = "FAT_POLY";
     public static final String COL_48 = "CHOLESTEROL";
 
+    private SQLiteDatabase database;
+
 
     public DatabaseHandler(Context context) {
         super(context, DATABASE_NAME, null, 1);
@@ -82,6 +84,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_NAME);
         onCreate(db);
     }
+
 
 //    // Adding new food object
 //    public void addFood(Food1 food) {

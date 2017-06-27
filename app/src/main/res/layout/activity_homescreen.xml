@@ -55,6 +55,7 @@
     <Button
         android:id="@+id/SearchNutrient"
         style="@style/Widget.AppCompat.Button.Colored"
+        android:shadowColor="#000000"
         android:layout_width="370dp"
         android:layout_height="140dp"
         android:layout_marginEnd="13dp"
@@ -62,7 +63,6 @@
         android:layout_marginRight="13dp"
         android:layout_marginStart="13dp"
         android:fontFamily="casual"
-        android:shadowColor="#000000"
         android:text="Search Nutrients"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
