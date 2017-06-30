@@ -21,6 +21,7 @@ public class NutrientSearch extends AppCompatActivity {
     ExpandableListView expListView;
     List<String> listDataHeader;
     HashMap<String, List<String>> listDataChild;
+    ArrayList<String> nutrientList = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -127,36 +128,49 @@ public class NutrientSearch extends AppCompatActivity {
         proximate.add("Sugar");
         Collections.sort(proximate);
 
-        List<String> vitamin = new ArrayList<String>();
-        vitamin.add("Vitamin C");
-        vitamin.add("Thiamin");
-        vitamin.add("Riboflavin");
-        vitamin.add("Niacin");
-        vitamin.add("Pantothenic Acid");
-        vitamin.add("Vitamin B-6");
-        vitamin.add("Foltate, total");
-        vitamin.add("Folic Acid");
-        vitamin.add("Folate, Food");
-        vitamin.add("Folate, DFE");
-        vitamin.add("Choline");
-        vitamin.add("Vitamin B-12");
-        vitamin.add("Vitamin A, IU");
-        vitamin.add("Retinol");
-        vitamin.add("Vitamin A, RAE");
-        vitamin.add("Protein");
-        vitamin.add("Carotene, alpha");
-        vitamin.add("Carotene, beta");
-        vitamin.add("Cryptoxanthin, beta");
-        vitamin.add("Lycopene");
-        vitamin.add("Lutein + Zeaxanthin");
-        vitamin.add("Vitamin E");
-        vitamin.add("Vitamin D, IU");
-        vitamin.add("Vitamin K");
-        Collections.sort(vitamin);
+            List<String> vitamin = new ArrayList<String>();
+            vitamin.add("Vitamin C");
+            vitamin.add("Thiamin");
+            vitamin.add("Riboflavin");
+            vitamin.add("Niacin");
+            vitamin.add("Pantothenic Acid");
+            vitamin.add("Vitamin B-6");
+            vitamin.add("Foltate, total");
+            vitamin.add("Folic Acid");
+            vitamin.add("Folate, Food");
+            vitamin.add("Folate, DFE");
+            vitamin.add("Choline");
+            vitamin.add("Vitamin B-12");
+            vitamin.add("Vitamin A, IU");
+            vitamin.add("Retinol");
+            vitamin.add("Vitamin A, RAE");
+            vitamin.add("Protein");
+            vitamin.add("Carotene, alpha");
+            vitamin.add("Carotene, beta");
+            vitamin.add("Cryptoxanthin, beta");
+            vitamin.add("Lycopene");
+            vitamin.add("Lutein + Zeaxanthin");
+            vitamin.add("Vitamin E");
+            vitamin.add("Vitamin D, IU");
+            vitamin.add("Vitamin K");
+            Collections.sort(vitamin);
 
         listDataChild.put(listDataHeader.get(0), lipids); // Header, Child data
         listDataChild.put(listDataHeader.get(1), minerals);
         listDataChild.put(listDataHeader.get(2), proximate);
         listDataChild.put(listDataHeader.get(3), vitamin);
+
+        for (int i = 0; i < lipids.size(); i++) {
+            nutrientList.add(lipids.get(i));
+        }
+        for (int i = 0; i < minerals.size(); i++) {
+            nutrientList.add(minerals.get(i));
+        }
+        for (int i = 0; i < proximate.size(); i++) {
+            nutrientList.add(proximate.get(i));
+        }
+        for (int i = 0; i < vitamin.size(); i++) {
+            nutrientList.add(vitamin.get(i));
+        }
     }
 }

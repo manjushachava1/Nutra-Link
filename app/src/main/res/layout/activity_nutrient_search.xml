@@ -17,10 +17,15 @@
         android:minHeight="10dp"
         android:theme="?attr/actionBarTheme" />
 
+    <SearchView
+        android:id="@+id/searchBar"
+        android:layout_width="match_parent"
+        android:layout_height="40dp" />
+
     <ExpandableListView
-    android:id="@+id/lvExp"
-    android:layout_height="match_parent"
-    android:fontFamily="casual"
-    android:layout_width="match_parent"/>
+        android:id="@+id/lvExp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fontFamily="casual" />
 
 </LinearLayout>
