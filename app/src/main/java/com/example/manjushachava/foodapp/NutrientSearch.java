@@ -1,27 +1,25 @@
 package com.example.manjushachava.foodapp;
 
-
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.HashMap;
 import java.util.List;
+
 import android.content.Intent;
 import android.os.Bundle;
+import android.app.SearchManager;
+import android.content.Context;
 import android.support.v7.app.AppCompatActivity;
+import android.view.Menu;
 import android.view.View;
 import android.widget.ExpandableListView;
-import android.widget.ExpandableListView.OnChildClickListener;
-import android.widget.ExpandableListView.OnGroupClickListener;
-import android.widget.ExpandableListView.OnGroupExpandListener;
-import android.widget.Toast;
+import android.widget.SearchView;
 
-public class NutrientSearch extends AppCompatActivity {
+public class NutrientSearch extends AppCompatActivity implements
+        SearchView.OnQueryTextListener, SearchView.OnCloseListener {
 
-    ExpandableListAdapter listAdapter;
-    ExpandableListView expListView;
-    List<String> listDataHeader;
-    HashMap<String, List<String>> listDataChild;
-    ArrayList<String> nutrientList = new ArrayList<>();
+    private ExpandableListAdapter listAdapter;
+    private ExpandableListView expListView;
+    private ArrayList<Parent> parentArrayList = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,19 +29,32 @@ public class NutrientSearch extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setTitle("Search Nutrients");
 
+        SearchManager searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
+        SearchView search = (SearchView) findViewById(R.id.search);
+        search.setSearchableInfo(searchManager.getSearchableInfo(getComponentName()));
+        search.setIconifiedByDefault(false);
+        search.setOnQueryTextListener(this);
+        search.setOnCloseListener(this);
+
         // get the listview
-        expListView = (ExpandableListView) findViewById(R.id.lvExp);
+        expListView = (ExpandableListView) findViewById(R.id.expandableList);
 
-        // preparing list data
-        prepareListData();
-
-        listAdapter = new ExpandableListAdapter(this, listDataHeader, listDataChild);
+        listAdapter = new ExpandableListAdapter(NutrientSearch.this, parentArrayList);
 
         // setting list adapter
         expListView.setAdapter(listAdapter);
 
         // Listview Group click listener
-        expListView.setOnGroupClickListener(new OnGroupClickListener() {
+        expListView.setOnGroupClickListener(new ExpandableListView.OnGroupClickListener() {
+
+            @Override
+            public boolean onGroupClick(ExpandableListView parent, View v,
+                                        int groupPosition, long id) {
+                return false;
+            }
+        });
+
+        expListView.setOnGroupClickListener(new ExpandableListView.OnGroupClickListener() {
 
             @Override
             public boolean onGroupClick(ExpandableListView parent, View v,
@@ -55,58 +66,68 @@ public class NutrientSearch extends AppCompatActivity {
             }
         });
 
-        // Listview Group expanded listener
-        expListView.setOnGroupExpandListener(new OnGroupExpandListener() {
-
-            @Override
-            public void onGroupExpand(int groupPosition) {
-                Toast.makeText(getApplicationContext(),
-                        listDataHeader.get(groupPosition) + " Expanded",
-                        Toast.LENGTH_SHORT).show();
-            }
-        });
-
         // Listview on child click listener
-        expListView.setOnChildClickListener(new OnChildClickListener() {
+        expListView.setOnChildClickListener(new ExpandableListView.OnChildClickListener() {
 
             @Override
             public boolean onChildClick(ExpandableListView parent, View v,
                                         int groupPosition, int childPosition, long id) {
-                // TODO Auto-generated method stub
-//                Toast.makeText(getApplicationContext(),listDataChild.get(listDataHeader.get(groupPosition)).get(childPosition),
-//                        Toast.LENGTH_SHORT).show();
 
                 Intent nextActivity = new Intent(NutrientSearch.this, TopTenView.class);
-                nextActivity.putExtra("TopTenView",listDataChild.get(listDataHeader.get(groupPosition)).get(childPosition));
+                ArrayList<Child> test;
+                test = parentArrayList.get(groupPosition).getChildList();
+                String name = test.get(childPosition).getName();
+                nextActivity.putExtra("TopTenView", name);
                 startActivity(nextActivity);
-                return false;
-            }//expListView.getItemAtPosition(childPosition).toString()
+                return true;
+            }
         });
+
+        displayList();
+        expandAll();
+
     }
 
-    /**
-     * Prepares the list data for the expandable listView
-     */
-    private void prepareListData() {
-        listDataHeader = new ArrayList<String>();
-        listDataChild = new HashMap<String, List<String>>();
 
-        // Adding child data
-        listDataHeader.add("Lipids");
-        listDataHeader.add("Minerals");
-        listDataHeader.add("Proximates");
-        listDataHeader.add("Vitamins");
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_main, menu);
+        return true;
+    }
 
+    //method to expand all groups
+    private void expandAll() {
+        int count = listAdapter.getGroupCount();
+        for (int i = 0; i < count; i++) {
+            expListView.expandGroup(i);
+        }
+    }
 
-        // Adding child data
-        List<String> lipids = new ArrayList<String>();
+    //method to expand all groups
+    private void displayList() {
+
+        //display the list
+        loadSomeData();
+
+        //get reference to the ExpandableListView
+        expListView = (ExpandableListView) findViewById(R.id.expandableList);
+        //create the adapter by passing your ArrayList data
+        listAdapter = new ExpandableListAdapter(NutrientSearch.this, parentArrayList);
+        //attach the adapter to the list
+        expListView.setAdapter(listAdapter);
+
+    }
+
+    private void loadSomeData() {
+
+        List<String> lipids = new ArrayList<>();
         lipids.add("Fatty Acids, Saturated");
         lipids.add("Fatty Acids, Monounsaturated");
         lipids.add("Fatty Acids, Polyunsaturated");
         lipids.add("Cholesterol");
         Collections.sort(lipids);
 
-        List<String> minerals = new ArrayList<String>();
+        List<String> minerals = new ArrayList<>();
         minerals.add("Iron");
         minerals.add("Magnesium");
         minerals.add("Phosphorus");
@@ -118,7 +139,7 @@ public class NutrientSearch extends AppCompatActivity {
         minerals.add("Selenium");
         Collections.sort(minerals);
 
-        List<String> proximate = new ArrayList<String>();
+        List<String> proximate = new ArrayList<>();
         proximate.add("Water");
         proximate.add("Energy");
         proximate.add("Protein");
@@ -128,49 +149,98 @@ public class NutrientSearch extends AppCompatActivity {
         proximate.add("Sugar");
         Collections.sort(proximate);
 
-            List<String> vitamin = new ArrayList<String>();
-            vitamin.add("Vitamin C");
-            vitamin.add("Thiamin");
-            vitamin.add("Riboflavin");
-            vitamin.add("Niacin");
-            vitamin.add("Pantothenic Acid");
-            vitamin.add("Vitamin B-6");
-            vitamin.add("Foltate, total");
-            vitamin.add("Folic Acid");
-            vitamin.add("Folate, Food");
-            vitamin.add("Folate, DFE");
-            vitamin.add("Choline");
-            vitamin.add("Vitamin B-12");
-            vitamin.add("Vitamin A, IU");
-            vitamin.add("Retinol");
-            vitamin.add("Vitamin A, RAE");
-            vitamin.add("Protein");
-            vitamin.add("Carotene, alpha");
-            vitamin.add("Carotene, beta");
-            vitamin.add("Cryptoxanthin, beta");
-            vitamin.add("Lycopene");
-            vitamin.add("Lutein + Zeaxanthin");
-            vitamin.add("Vitamin E");
-            vitamin.add("Vitamin D, IU");
-            vitamin.add("Vitamin K");
-            Collections.sort(vitamin);
+        List<String> vitamin = new ArrayList<>();
+        vitamin.add("Vitamin C");
+        vitamin.add("Thiamin");
+        vitamin.add("Riboflavin");
+        vitamin.add("Niacin");
+        vitamin.add("Pantothenic Acid");
+        vitamin.add("Vitamin B-6");
+        vitamin.add("Foltate, total");
+        vitamin.add("Folic Acid");
+        vitamin.add("Folate, Food");
+        vitamin.add("Folate, DFE");
+        vitamin.add("Choline");
+        vitamin.add("Vitamin B-12");
+        vitamin.add("Vitamin A, IU");
+        vitamin.add("Retinol");
+        vitamin.add("Vitamin A, RAE");
+        vitamin.add("Protein");
+        vitamin.add("Carotene, alpha");
+        vitamin.add("Carotene, beta");
+        vitamin.add("Cryptoxanthin, beta");
+        vitamin.add("Lycopene");
+        vitamin.add("Lutein + Zeaxanthin");
+        vitamin.add("Vitamin E");
+        vitamin.add("Vitamin D, IU");
+        vitamin.add("Vitamin K");
+        Collections.sort(vitamin);
 
-        listDataChild.put(listDataHeader.get(0), lipids); // Header, Child data
-        listDataChild.put(listDataHeader.get(1), minerals);
-        listDataChild.put(listDataHeader.get(2), proximate);
-        listDataChild.put(listDataHeader.get(3), vitamin);
+        ArrayList<Child> childList;
 
-        for (int i = 0; i < lipids.size(); i++) {
-            nutrientList.add(lipids.get(i));
-        }
-        for (int i = 0; i < minerals.size(); i++) {
-            nutrientList.add(minerals.get(i));
-        }
+        /*************************************PROXIMATES*******************************************/
+        childList = new ArrayList<>();
         for (int i = 0; i < proximate.size(); i++) {
-            nutrientList.add(proximate.get(i));
+            Child proximatePack = new Child(proximate.get(i));
+            childList.add(proximatePack);
         }
+
+        Parent proximates = new Parent("Proximate", childList);
+        parentArrayList.add(proximates);
+
+        /*************************************LIPIDS*********************************************/
+        childList = new ArrayList<>();
+        for (int i = 0; i < lipids.size(); i++) {
+            Child lipidsPack = new Child(lipids.get(i));
+            childList.add(lipidsPack);
+        }
+
+        Parent lipid = new Parent("Lipids", childList);
+        parentArrayList.add(lipid);
+
+        /*************************************MINERALS*********************************************/
+        childList = new ArrayList<>();
+        for (int i = 0; i < minerals.size(); i++) {
+            Child mineralPack = new Child(minerals.get(i));
+            childList.add(mineralPack);
+        }
+
+        Parent mineral = new Parent("Minerals", childList);
+        parentArrayList.add(mineral);
+
+
+
+        /*************************************VITAMINS*********************************************/
+        childList = new ArrayList<>();
         for (int i = 0; i < vitamin.size(); i++) {
-            nutrientList.add(vitamin.get(i));
+            Child vitaminPack = new Child(vitamin.get(i));
+            childList.add(vitaminPack);
         }
+
+        Parent vitamins = new Parent("Vitamins", childList);
+        parentArrayList.add(vitamins);
+
+
+    }
+
+    @Override
+    public boolean onClose() {
+        listAdapter.filterData("");
+        expandAll();
+        return false;
+    }
+
+    @Override
+    public boolean onQueryTextChange(String query) {
+        listAdapter.filterData(query);
+        expandAll();
+        return false;
+    }
+
+    @Override
+    public boolean onQueryTextSubmit(String query) {
+        listAdapter.filterData(query);
+        expandAll();
+        return false;
     }
 }
