@@ -43,7 +43,6 @@
                     android:id="@+id/textView"
                     android:layout_width="233dp"
                     android:layout_height="76dp"
-                    android:text="meow meow"
                     android:fontFamily="casual"
                     android:textColor="#000000"
                     android:textSize="50dp"

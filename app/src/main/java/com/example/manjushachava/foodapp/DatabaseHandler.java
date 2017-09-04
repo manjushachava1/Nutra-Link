@@ -50,21 +50,21 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     public static final String COL_36 = "ALPHA_CAROT";
     public static final String COL_37 = "BETA_CAROT";
     public static final String COL_38 = "BETA_CRYPT";
-            public static final String COL_39 = "LYCOPENE";
-            public static final String COL_40 = "LUT_ZEA";
-            public static final String COL_41 = "VITAMIN_E";
-            public static final String COL_42 = "VITAMIN_D";
-            public static final String COL_43 = "VITAMIN_D_IU";
-            public static final String COL_44 = "VITAMIN_K";
-            public static final String COL_45 = "FAT_SAT";
-            public static final String COL_46 = "FAT_MONO";
-            public static final String COL_47 = "FAT_POLY";
-            public static final String COL_48 = "CHOLESTEROL";
+    public static final String COL_39 = "LYCOPENE";
+    public static final String COL_40 = "LUT_ZEA";
+    public static final String COL_41 = "VITAMIN_E";
+    public static final String COL_42 = "VITAMIN_D";
+    public static final String COL_43 = "VITAMIN_D_IU";
+    public static final String COL_44 = "VITAMIN_K";
+    public static final String COL_45 = "FAT_SAT";
+    public static final String COL_46 = "FAT_MONO";
+    public static final String COL_47 = "FAT_POLY";
+    public static final String COL_48 = "CHOLESTEROL";
 
-            private SQLiteDatabase database;
+    private SQLiteDatabase database;
 
 
-            public DatabaseHandler(Context context) {
+    public DatabaseHandler(Context context) {
         super(context, DATABASE_NAME, null, 1);
         SQLiteDatabase db = this.getWritableDatabase();
     }
