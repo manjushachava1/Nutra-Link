@@ -11,37 +11,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
-import com.github.mikephil.charting.charts.PieChart;
-import com.github.mikephil.charting.components.Legend;
-import com.github.mikephil.charting.data.Entry;
-import com.github.mikephil.charting.data.PieData;
-import com.github.mikephil.charting.data.PieDataSet;
-import com.github.mikephil.charting.data.PieEntry;
-import com.github.mikephil.charting.highlight.Highlight;
-import com.github.mikephil.charting.listener.OnChartValueSelectedListener;
+import com.github.mikephil.charting.charts.BarChart;
 
-import java.util.ArrayList;
-import java.util.Random;
-
-import android.graphics.Color;
-import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
-import android.util.Log;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.Toast;
-
-import com.github.mikephil.charting.charts.PieChart;
-import com.github.mikephil.charting.components.Legend;
-import com.github.mikephil.charting.data.Entry;
-import com.github.mikephil.charting.data.PieData;
-import com.github.mikephil.charting.data.PieDataSet;
-import com.github.mikephil.charting.data.PieEntry;
-import com.github.mikephil.charting.highlight.Highlight;
-import com.github.mikephil.charting.listener.OnChartValueSelectedListener;
+import com.github.mikephil.charting.charts.BarChart;
+import com.github.mikephil.charting.data.BarData;
+import com.github.mikephil.charting.formatter.IndexAxisValueFormatter;
+import com.github.mikephil.charting.data.BarDataSet;
+import com.github.mikephil.charting.data.BarEntry;
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -50,10 +26,8 @@ import java.util.Random;
 public class Tab2Fragment extends Fragment {
     private static final String TAG = "Tab1Fragment";
 
-    private PieChart pieChart;
-    ArrayList<Double> yData = new ArrayList<>();
-    ArrayList<String> xData = new ArrayList<>();
-    private float[] arrMinData;
+    private BarChart barChart;
+
 
     @Nullable
     @Override
@@ -66,86 +40,67 @@ public class Tab2Fragment extends Fragment {
 
         //searches for the food object from the user input
         Food1 food = aController.searchFood(name);
-
-        xData.add("Iron");
-        xData.add("Magnesium");
-        xData.add("Phosphorus");
-        xData.add("Potassium");
-        xData.add("Sodium");
-        xData.add("Zinc");
-        xData.add("Copper");
-        xData.add("Manganese");
-        xData.add("Selenium");
         
-        yData.add(food.getMinerals().getZinc());
-        yData.add(food.getMinerals().getCalcium());
-        yData.add(food.getMinerals().getCopper());
-        yData.add(food.getMinerals().getIron());
-        yData.add(food.getMinerals().getMagnesium());
-        yData.add(food.getMinerals().getManganese());
-        yData.add(food.getMinerals().getPhosphorus());
-        yData.add(food.getMinerals().getPotassium());
-        yData.add(food.getMinerals().getSelenium());
-        yData.add(food.getMinerals().getSodium());
-        createArrayVitamins(yData);
+        ArrayList<String> nutriLabels = new ArrayList<>();
+        nutriLabels.add("Iron");
+        nutriLabels.add("Magnesium");
+        nutriLabels.add("Phosphorus");
+        nutriLabels.add("Potassium");
+        nutriLabels.add("Sodium");
+        nutriLabels.add("Zinc");
+        nutriLabels.add("Copper");
+        nutriLabels.add("Manganese");
+        nutriLabels.add("Selenium");
 
-        pieChart =(PieChart) view.findViewById(R.id.idPieChart);
+        ArrayList<Float> yData_Base = new ArrayList<>();
+        yData_Base.add((float)food.getMinerals().getZinc());
+        yData_Base.add((float)food.getMinerals().getCalcium());
+        yData_Base.add((float)food.getMinerals().getCopper());
+        yData_Base.add((float)food.getMinerals().getIron());
+        yData_Base.add((float)food.getMinerals().getMagnesium());
+        yData_Base.add((float)food.getMinerals().getManganese());
+        yData_Base.add((float)food.getMinerals().getPhosphorus());
+        yData_Base.add((float)food.getMinerals().getPotassium());
+        yData_Base.add((float)food.getMinerals().getSelenium());
+        yData_Base.add((float)food.getMinerals().getSodium());
+        barChart = (BarChart) view.findViewById(R.id.idBarChart);
 
-        pieChart.setDescription("");
-        pieChart.setRotationEnabled(true);
-        pieChart.setHoleRadius(25f);
-        pieChart.setTransparentCircleAlpha(0);
-        pieChart.setCenterText("Graph of Minerals");
-        pieChart.setCenterTextSize(10);
-        pieChart.setDrawEntryLabels(true);
+        //Array list of data to be graphed. Bar Entries are formatted as (position in bar graph, y-value)
+        ArrayList<Boolean> underOne = new ArrayList<>();
+        for (int i = 0; i < yData_Base.size(); i++)
+        {underOne.add(false);}
 
-        addDataSet();
-
-        pieChart.setOnChartValueSelectedListener(new OnChartValueSelectedListener() {
-            @Override
-            public void onValueSelected(Entry e, Highlight h) {
-                Log.d(TAG, "onValueSelected: Value selected from chart.");
-                Log.d(TAG, "onValueSelected: " + e.toString());
-                Log.d(TAG, "onValueSelected: " + h.toString());
-
-                int pos1 = e.toString().indexOf("(sum): ");
-                int pos2 = (int) h.getX()-1;
-                String value = e.toString().substring(pos1 + 7);
-                String nutrient = xData.get(pos2);
-                Toast.makeText(getActivity(),"Mineral: " + nutrient + "\n" + value +"ug",Toast.LENGTH_SHORT).show();
-            }
-
-            @Override
-            public void onNothingSelected() {
-
-            }
-        });
-        return view;
-
-    }
-
-    /**
-     * Adds data and sets the features to the pie chart
-     *
-     */
-    private void addDataSet(){
-        Log.d(TAG,"addDataSet started");
-        ArrayList<PieEntry> yEntry = new ArrayList<>();
-        ArrayList<String> xEntry = new ArrayList<>();
-
-        for(int i = 0; i < arrMinData.length; i++){
-            yEntry.add(new PieEntry(arrMinData[i],i));
+        //Loop through and find which slots are flagged as under one microgram.
+        for (int i = 0; i < yData_Base.size(); i++)
+        {if (yData_Base.get(i) < 1)
+            underOne.set(i, true);
         }
 
-        for(int i = 1; i < xData.size(); i++){
-            xEntry.add(xData.get(i));
+        //Loop through remove the nutrients under 1 microgram.
+        for (int i = 0; i < yData_Base.size(); i++)
+        {if (yData_Base.get(i)< 1)
+        {yData_Base.remove(i);
+            i = -1;
+        }
         }
 
-        //create the data set
-        PieDataSet pieDataSet = new PieDataSet(yEntry,"Minerals");
-        pieDataSet.setSliceSpace(1);
-        pieDataSet.setValueTextSize(14);
+        //Loop through the labels and blank out the ones that are flagged as belonging to nutrients unde rone microgram.
+        for (int i = 0; i < nutriLabels.size(); i++)
+        {if (underOne.get(i))
+            nutriLabels.set(i, "");
+        }
 
+        //Loop through the labels, and purge the empty ones.
+        for (int i = 0; i < nutriLabels.size(); i++)
+        {if (nutriLabels.get(i).equals(""))
+        {nutriLabels.remove(i);
+            i = -1;
+        }}
+
+        ArrayList<BarEntry> yData = new ArrayList<>();
+
+        for (int i = 0; i < nutriLabels.size(); i ++)
+        {yData.add(new BarEntry (i, yData_Base.get(i)));}
 
         ArrayList<Integer> colors = new ArrayList<>();
         for(int i = 0; i < yData.size(); i++ ) {
@@ -156,31 +111,21 @@ public class Tab2Fragment extends Fragment {
             int randomColor = Color.rgb(r,g,b);
             colors.add(randomColor);
         }
-        pieDataSet.setColors(colors);
 
-        //add legend to chart
-        Legend legend = pieChart.getLegend();
-        legend.setEnabled(true);
-        legend.setForm(Legend.LegendForm.CIRCLE);
-        legend.setPosition(Legend.LegendPosition.LEFT_OF_CHART);
+        BarDataSet dataset = new BarDataSet(yData, "Minerals");
+        dataset.setColors(colors);
+        BarData data = new BarData(dataset);
+        barChart.setData(data);
+        barChart.getXAxis().setLabelCount(yData.size());
+        barChart.setDrawGridBackground(true);
+        barChart.getXAxis().setValueFormatter(new IndexAxisValueFormatter(nutriLabels));
+        barChart.getXAxis().setDrawGridLines(false);
+        barChart.getXAxis().setLabelRotationAngle(90);
+        barChart.getDescription().setText("Amount of minerals in: " + food.getName());
+        barChart.getAxisRight().setDrawLabels(false);
+        barChart.animateY(3000);
+        barChart.getLegend().setEnabled(false);
+        return view;
 
-        //create pie data object
-        PieData pieData = new PieData(pieDataSet);
-        pieChart.setData(pieData);
-        pieChart.invalidate();
-    }
 
-    /**
-     * Creates an array of mineral data from an arrayList
-     * @param mineralData an arrayList of doubles
-     *
-     */
-    private void createArrayVitamins(ArrayList<Double> mineralData) {
-        int sizeOfList = mineralData.size();
-        float[] arrMin = new float[sizeOfList];
-        for (int i = 0; i < arrMin.length; i++) {
-            arrMin[i] = Double.valueOf(mineralData.get(i)).floatValue();
-        }
-        arrMinData = arrMin;
-    }
-}
+    }}

@@ -10,10 +10,10 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <com.github.mikephil.charting.charts.PieChart
-            android:id="@+id/idPieChart"
-            android:layout_width="500dp"
-            android:layout_height="700dp"
+        <com.github.mikephil.charting.charts.BarChart
+            android:id="@+id/idBarChart"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:fontFamily="casual"
             android:layout_alignParentBottom="true"
             tools:layout_editor_absoluteX="16dp"
@@ -27,7 +27,7 @@
             tools:layout_constraintLeft_creator="1"
             tools:layout_constraintRight_creator="1"
             tools:layout_constraintTop_creator="1">
-        </com.github.mikephil.charting.charts.PieChart>
+        </com.github.mikephil.charting.charts.BarChart>
 
     </android.support.constraint.ConstraintLayout>
 

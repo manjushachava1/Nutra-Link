@@ -1,47 +1,18 @@
 package com.example.manjushachava.foodapp;
-
+import com.github.mikephil.charting.components.Legend;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-
-import com.github.mikephil.charting.charts.PieChart;
-import com.github.mikephil.charting.components.Legend;
-import com.github.mikephil.charting.data.Entry;
-import com.github.mikephil.charting.data.PieData;
-import com.github.mikephil.charting.data.PieDataSet;
-import com.github.mikephil.charting.data.PieEntry;
-import com.github.mikephil.charting.highlight.Highlight;
-import com.github.mikephil.charting.listener.OnChartValueSelectedListener;
-
-import java.lang.reflect.Array;
-import java.util.ArrayList;
-import java.util.Random;
-
-import android.graphics.Color;
-import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
-import android.util.Log;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.Toast;
-
-import com.github.mikephil.charting.charts.PieChart;
-import com.github.mikephil.charting.components.Legend;
-import com.github.mikephil.charting.data.Entry;
-import com.github.mikephil.charting.data.PieData;
-import com.github.mikephil.charting.data.PieDataSet;
-import com.github.mikephil.charting.data.PieEntry;
-import com.github.mikephil.charting.highlight.Highlight;
-import com.github.mikephil.charting.listener.OnChartValueSelectedListener;
+import com.github.mikephil.charting.components.XAxis;
+import com.github.mikephil.charting.charts.BarChart;
+import com.github.mikephil.charting.data.BarData;
+import com.github.mikephil.charting.formatter.IndexAxisValueFormatter;
+import com.github.mikephil.charting.data.BarDataSet;
+import com.github.mikephil.charting.data.BarEntry;
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -50,92 +21,76 @@ import java.util.Random;
 public class Tab4Fragment extends Fragment {
     private static final String TAG = "Tab4Fragment";
 
-    Button btn;
-    private PieChart pieChart;
-    ArrayList<Double> yData = new ArrayList<>();
-    ArrayList<String> xData = new ArrayList<>();
-    private float[] arrLipData;
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.tab4_fragment, container, false);
 
+        BarChart barChart;
+        barChart = (BarChart) view.findViewById(R.id.idBarChart);
+
         //creates an instance of the Controller class and gets the user input
         final Controller aController = (Controller) getContext().getApplicationContext();
         String name = aController.getUserName();
 
+        //The array list of labels.
+        ArrayList<String> nutriLabels = new ArrayList<>();
+        nutriLabels.add("F. Acids, Unsat."); //fatty acids unsaturated
+        nutriLabels.add("F. Acids, Monosat."); //fatty acids monosaturated
+        nutriLabels.add("F. Acids, Polysat."); //fattyacids polysaturated
+        nutriLabels.add("Cholesterol"); //cholesterol
+
         //searches for the food object from the user input
         Food1 food = aController.searchFood(name);
 
-        xData.add("Fatty Acids, Saturated");
-        xData.add("Fatty Acids, Monounsaturated");
-        xData.add("Fatty Acids, Polyunsaturated");
-        xData.add("Cholesterol");
+        ArrayList<Float> yData_Base = new ArrayList<>();
+        yData_Base.add( (float) food.getLipids().getCholestrl());
+        yData_Base.add( (float)food.getLipids().getFat_mono());
+        yData_Base.add( (float)food.getLipids().getFat_poly());
+        yData_Base.add( (float)food.getLipids().getFat_sat());
 
-        yData.add(food.getLipids().getCholestrl());
-        yData.add(food.getLipids().getFat_mono());
-        yData.add(food.getLipids().getFat_poly());
-        yData.add(food.getLipids().getFat_sat());
+        //Array list of data to be graphed. Bar Entries are formatted as (position in bar graph, y-value)
+        ArrayList<Boolean> underOne = new ArrayList<>();
+        for (int i = 0; i < yData_Base.size(); i++)
+        {underOne.add(false);}
 
-
-        createArrayVitamins(yData);
-
-        pieChart =(PieChart) view.findViewById(R.id.idPieChart);
-
-        pieChart.setRotationEnabled(true);
-        pieChart.setHoleRadius(25f);
-        pieChart.setTransparentCircleAlpha(0);
-        pieChart.setCenterText("Graph of Lipids");
-        pieChart.setCenterTextSize(10);
-        pieChart.setDrawEntryLabels(true);
-
-        addDataSet();
-
-        pieChart.setOnChartValueSelectedListener(new OnChartValueSelectedListener() {
-            @Override
-            public void onValueSelected(Entry e, Highlight h) {
-                Log.d(TAG, "onValueSelected: Value selected from chart.");
-                Log.d(TAG, "onValueSelected: " + e.toString());
-                Log.d(TAG, "onValueSelected: " + h.toString());
-
-                int pos1 = e.toString().indexOf("(sum): ");
-                int pos2 = (int) h.getX();
-                String value = e.toString().substring(pos1 + 7);
-                String nutrient = xData.get(pos2);
-                Toast.makeText(getActivity(),"Lipid: " + nutrient + "\n" + value +"mg",Toast.LENGTH_SHORT).show();
-            }
-
-            @Override
-            public void onNothingSelected() {
-
-            }
-        });
-        return view;
-
-    }
-
-    /**
-     * Adds data and sets the features to the pie chart
-     *
-     */
-    private void addDataSet(){
-        Log.d(TAG,"addDataSet started");
-        ArrayList<PieEntry> yEntry = new ArrayList<>();
-        ArrayList<String> xEntry = new ArrayList<>();
-
-        for(int i = 0; i < arrLipData.length; i++){
-            yEntry.add(new PieEntry(arrLipData[i],i));
+        //Loop through and find which slots are flagged as under one microgram.
+        for (int i = 0; i < yData_Base.size(); i++)
+        {if (yData_Base.get(i) < 1)
+        underOne.set(i, true);
         }
 
-        for(int i = 1; i < xData.size(); i++){
-            xEntry.add(xData.get(i));
+        //Loop through remove the nutrients under 1 microgram.
+       for (int i = 0; i < yData_Base.size(); i++)
+        {if (yData_Base.get(i)< 1)
+        {yData_Base.remove(i);
+            i = -1;
+        }
         }
 
-        //create the data set
-        PieDataSet pieDataSet = new PieDataSet(yEntry,"Lipids");
-        pieDataSet.setSliceSpace(1);
-        pieDataSet.setValueTextSize(14);
+        //Loop through the labels and blank out the ones that are flagged as belonging to nutrients unde rone microgram.
+        for (int i = 0; i < nutriLabels.size(); i++)
+        {if (underOne.get(i))
+        nutriLabels.set(i, "");
+        }
+
+        //Loop through the labels, and purge the empty ones.
+      for (int i = 0; i < nutriLabels.size(); i++)
+      {if (nutriLabels.get(i).equals(""))
+      {nutriLabels.remove(i);
+          i = -1;
+       }}
+
+       ArrayList<BarEntry> yData = new ArrayList<>();
+
+       for (int i = 0; i < nutriLabels.size(); i ++)
+       {yData.add(new BarEntry (i, yData_Base.get(i)));}
+
+      // yData.add(new BarEntry(0, (float) (food.getLipids().getCholestrl())));
+      /// yData.add(new BarEntry(1, (float) (food.getLipids().getFat_mono())));
+      // yData.add(new BarEntry(2, (float) (food.getLipids().getFat_poly())));
+      // yData.add(new BarEntry(3, (float) (food.getLipids().getFat_sat())));
 
 
         ArrayList<Integer> colors = new ArrayList<>();
@@ -147,31 +102,30 @@ public class Tab4Fragment extends Fragment {
             int randomColor = Color.rgb(r,g,b);
             colors.add(randomColor);
         }
-        pieDataSet.setColors(colors);
 
-        //add legend to chart
-        Legend legend = pieChart.getLegend();
-        legend.setEnabled(true);
-        legend.setForm(Legend.LegendForm.CIRCLE);
-        legend.setPosition(Legend.LegendPosition.LEFT_OF_CHART);
+        BarDataSet dataset = new BarDataSet(yData, "Lipids");
+        dataset.setColors(colors);
+        BarData data = new BarData(dataset);
+        barChart.setData(data);
+        barChart.getXAxis().setLabelCount(yData.size());
+        barChart.setDrawGridBackground(true);
+        barChart.getXAxis().setValueFormatter(new IndexAxisValueFormatter(nutriLabels));
+        barChart.getXAxis().setDrawGridLines(false);
+        barChart.getXAxis().setLabelRotationAngle(90);
+        barChart.getDescription().setText("Amount of lipids in: " + food.getName());
+        barChart.getAxisRight().setDrawLabels(false);
+       // barChart.getXAxis().setPosition(XAxis.XAxisPosition.BOTTOM);
+        barChart.animateX(500);
+        barChart.animateY(3000);
+        barChart.getLegend().setEnabled(false);
 
-        //create pie data object
-        PieData pieData = new PieData(pieDataSet);
-        pieChart.setData(pieData);
-        pieChart.invalidate();
+
+
+        return view;
+
+
     }
 
-    /**
-     * Creates an array of lipid data from an arrayList
-     * @param lipidData an arrayList of doubles
-     *
-     */
-    private void createArrayVitamins(ArrayList<Double> lipidData) {
-        int sizeOfList = lipidData.size();
-        float[] arrLip = new float[sizeOfList];
-        for (int i = 0; i < arrLip.length; i++) {
-            arrLip[i] = Double.valueOf(lipidData.get(i)).floatValue();
-        }
-        arrLipData = arrLip;
-    }
+
+
 }

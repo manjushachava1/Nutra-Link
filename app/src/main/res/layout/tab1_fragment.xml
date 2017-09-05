@@ -41,10 +41,10 @@
                 android:orientation="vertical" />
         </ScrollView>
 
-        <com.github.mikephil.charting.charts.PieChart
-            android:id="@+id/idPieChart"
-            android:layout_width="500dp"
-            android:layout_height="700dp"
+        <com.github.mikephil.charting.charts.BarChart
+            android:id="@+id/idBarChart"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:layout_alignParentBottom="true"
             android:fontFamily="casual"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -55,7 +55,7 @@
             tools:layout_constraintBottom_creator="1"
             tools:layout_constraintLeft_creator="1"
             tools:layout_constraintRight_creator="1"
-            tools:layout_constraintTop_creator="1"></com.github.mikephil.charting.charts.PieChart>
+            tools:layout_constraintTop_creator="1"></com.github.mikephil.charting.charts.BarChart>
 
 
     </android.support.constraint.ConstraintLayout>
