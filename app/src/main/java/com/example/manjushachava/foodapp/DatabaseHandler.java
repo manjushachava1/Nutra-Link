@@ -1,13 +1,8 @@
 package com.example.manjushachava.foodapp;
 
-import android.content.ContentValues;
 import android.content.Context;
-import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by Manjusha Chava on 6/1/2017.
