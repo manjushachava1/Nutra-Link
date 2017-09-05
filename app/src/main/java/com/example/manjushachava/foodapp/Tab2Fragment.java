@@ -27,7 +27,7 @@ public class Tab2Fragment extends Fragment {
     private static final String TAG = "Tab1Fragment";
 
     private BarChart barChart;
-
+//Please work
 
     @Nullable
     @Override

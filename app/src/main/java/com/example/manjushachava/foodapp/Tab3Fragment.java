@@ -101,7 +101,7 @@ public class Tab3Fragment extends Fragment {
         {nutriLabels.remove(i);
             i = -1;
         }}
-
+//Please work
         ArrayList<BarEntry> yData = new ArrayList<>();
 
         for (int i = 0; i < nutriLabels.size(); i ++)

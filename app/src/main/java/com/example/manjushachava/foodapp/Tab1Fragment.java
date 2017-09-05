@@ -77,7 +77,7 @@ public class Tab1Fragment extends Fragment {
         nutriLabels.add("Vitamin D, IU");
         nutriLabels.add("Vitamin K");
 
-
+//Please work
         ArrayList<Float> yData_Base = new ArrayList<>();
         yData_Base.add((float)food.getVitamins().getVit_a_iu());
         yData_Base.add((float)food.getVitamins().getApha_carot());

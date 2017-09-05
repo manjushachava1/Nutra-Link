@@ -17,7 +17,7 @@ import com.github.mikephil.charting.data.BarEntry;
 import java.util.ArrayList;
 import java.util.Random;
 
-
+//Please work
 public class Tab4Fragment extends Fragment {
     private static final String TAG = "Tab4Fragment";
 
