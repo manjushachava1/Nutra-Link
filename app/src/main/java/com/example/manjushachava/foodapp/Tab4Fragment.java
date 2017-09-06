@@ -4,15 +4,21 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
+
 import com.github.mikephil.charting.components.XAxis;
 import com.github.mikephil.charting.charts.BarChart;
 import com.github.mikephil.charting.data.BarData;
+import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.formatter.IndexAxisValueFormatter;
 import com.github.mikephil.charting.data.BarDataSet;
 import com.github.mikephil.charting.data.BarEntry;
+import com.github.mikephil.charting.highlight.Highlight;
+import com.github.mikephil.charting.listener.OnChartValueSelectedListener;
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -35,7 +41,7 @@ public class Tab4Fragment extends Fragment {
         String name = aController.getUserName();
 
         //The array list of labels.
-        ArrayList<String> nutriLabels = new ArrayList<>();
+        final ArrayList<String> nutriLabels = new ArrayList<>();
         nutriLabels.add("F. Acids, Unsat."); //fatty acids unsaturated
         nutriLabels.add("F. Acids, Monosat."); //fatty acids monosaturated
         nutriLabels.add("F. Acids, Polysat."); //fattyacids polysaturated
@@ -119,6 +125,28 @@ public class Tab4Fragment extends Fragment {
         barChart.animateY(3000);
         barChart.getLegend().setEnabled(false);
 
+        barChart.setScaleEnabled(false);
+        barChart.setDragEnabled(false);
+
+        barChart.setOnChartValueSelectedListener(new OnChartValueSelectedListener() {
+            @Override
+            public void onValueSelected(Entry e, Highlight h) {
+                Log.d(TAG, "onValueSelected: Value selected from chart.");
+                Log.d(TAG, "onValueSelected: " + e.toString());
+                Log.d(TAG, "onValueSelected: " + h.toString());
+
+                int pos1 = e.toString().indexOf("(sum): ");
+                int pos2 = (int) h.getX();
+                String value = e.toString().substring((pos2 ) + 7);
+                String nutrient = nutriLabels.get(pos2);
+                Toast.makeText(getActivity(),"Vitamin: " + nutrient + "\n" + value +"ug",Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onNothingSelected() {
+
+            }
+        });
 
 
         return view;
