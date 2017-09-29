@@ -137,6 +137,7 @@ public class NutrientSearch extends AppCompatActivity implements
         minerals.add("Copper");
         minerals.add("Manganese");
         minerals.add("Selenium");
+        minerals.add("Calcium");
         Collections.sort(minerals);
 
         List<String> proximate = new ArrayList<>();

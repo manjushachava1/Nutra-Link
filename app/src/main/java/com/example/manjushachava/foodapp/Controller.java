@@ -1,6 +1,7 @@
 package com.example.manjushachava.foodapp;
 
 import android.app.Application;
+import android.os.Bundle;
 import android.util.Log;
 
 import com.example.manjushachava.foodapp.Food1;
@@ -12,6 +13,8 @@ public class Controller extends Application {
 
     private ArrayList<Food1> foodList = new ArrayList<Food1>();
     private String name;
+    private String nutrientName;
+    private ArrayList<String> mineralArrayList;
 
     /**
      * Searches for the food object that correlates to the string parameter
@@ -35,25 +38,34 @@ public class Controller extends Application {
     public void setFoodList(ArrayList<Food1> food){
         foodList =  food;
     }
-    /**
-     * Sets the name of the food object that the user clicks
-     * @param name the name of the food object
-     */
-    public void setUserName(String name){
-        this.name = name;
-    }
-    /**
-     * Gets the name of the food object the user clicks.
-     * @return the name of the food the user clicks
-     */
-    public String getUserName(){
-        return name;
-    }
+
     /**
      * Gets the arrayList of food objects
      * @return the arrayList of food objects
      */
     public ArrayList<Food1> getFoodList(){
         return foodList;
+    }
+
+    /**
+     * Gets the name of the nutrient from the bundle.
+     * @return the name of the nutrient the user clicks
+     */
+    public void setNutrientName(String nutrientName) {
+        this.nutrientName = nutrientName;
+    }
+    /**
+     * Gets the name of the food object the user clicks.
+     * @return the name of the food the user clicks
+     */
+    public String getNutrientName() {
+        return nutrientName;
+    }
+
+    public void setMineralArray(ArrayList mineralArray) {
+        this.mineralArrayList = mineralArray;
+    }
+    public ArrayList getMineralArrayList(){
+        return mineralArrayList;
     }
 }

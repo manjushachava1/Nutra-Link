@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fontFamily="casual"
+    android:textColor="#FFFFFF"
     tools:context="com.example.manjushachava.foodapp.FoodSearch"
     android:orientation="vertical"
     android:weightSum="1">
@@ -14,26 +15,26 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:fontFamily="casual"
+        android:textColor="#FFFFFF"
         tools:context=".MainActivity">
 
         <SearchView
             android:id="@+id/searchView1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
             android:fontFamily="casual"
-            android:queryHint="Search.."
-            android:layout_alignParentStart="true"></SearchView>
+            android:queryHint="Search.."></SearchView>
 
         <ListView
             android:id="@+id/listView1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingBottom="10dp"
-            android:background="#E94280"
-            android:fontFamily="casual"
             android:layout_below="@+id/searchView1"
-            android:layout_alignParentStart="true"></ListView>
+            android:background="#E94280"
+            android:fontFamily="Casual"
+            android:paddingBottom="10dp"></ListView>
 
     </RelativeLayout>
 

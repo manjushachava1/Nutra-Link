@@ -31,7 +31,6 @@ public class ParseData1 {
      */
     public ArrayList<Food1> allFoods() throws FileNotFoundException {
 
-        Log.i("Jack", "Entered While loop");
         ArrayList<Food1> foods = new ArrayList<Food1>();
         Scanner scan = new Scanner(is);
         scan.nextLine();
@@ -103,7 +102,7 @@ public class ParseData1 {
     /**
      * reads the csv and finds the data for the Minerals1 object
      * @param split
-     * @return the Minerasl1 object of a respective food
+     * @return the Minerals1 object of a respective food
      */
     private Minerals1 buildMinerals(String[] split) {
         Minerals1 minerals = new Minerals1();

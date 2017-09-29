@@ -38,7 +38,7 @@ public class Tab4Fragment extends Fragment {
 
         //creates an instance of the Controller class and gets the user input
         final Controller aController = (Controller) getContext().getApplicationContext();
-        String name = aController.getUserName();
+        String name = aController.getNutrientName();
 
         //The array list of labels.
         final ArrayList<String> nutriLabels = new ArrayList<>();
