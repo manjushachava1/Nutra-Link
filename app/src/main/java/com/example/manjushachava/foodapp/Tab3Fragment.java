@@ -50,7 +50,7 @@ public class Tab3Fragment extends Fragment {
 
         //creates an instance of the Controller class and gets the user input
         final Controller aController = (Controller) getContext().getApplicationContext();
-        String name = aController.getUserName();
+        String name = aController.getNutrientName();
 
         //searches for the food object from the user input
         Food1 food = aController.searchFood(name);

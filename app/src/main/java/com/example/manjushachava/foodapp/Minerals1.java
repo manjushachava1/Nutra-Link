@@ -1,5 +1,9 @@
 package com.example.manjushachava.foodapp;
 
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+import java.util.Collections;
+
 public class Minerals1 {
 	private double calcium;
 	private double iron;
@@ -11,6 +15,8 @@ public class Minerals1 {
 	private double copper;
 	private double manganese;
 	private double selenium;
+	private ArrayList<String> mineralNames = new ArrayList<>();
+
 
 
 	/**
@@ -18,6 +24,21 @@ public class Minerals1 {
 	 */
 	public Minerals1() {
 
+	}
+	public void createMineralArray(){
+		mineralNames.add("Iron");
+		mineralNames.add("Magnesium");
+		mineralNames.add("Phosphorus");
+		mineralNames.add("Potassium");
+		mineralNames.add("Sodium");
+		mineralNames.add("Zinc");
+		mineralNames.add("Copper");
+		mineralNames.add("Manganese");
+		mineralNames.add("Selenium");
+		mineralNames.add("Calcium");
+		Collections.sort(mineralNames);
+		final Controller controller = new Controller();
+		controller.setMineralArray(mineralNames);
 	}
 	/**
 	 *

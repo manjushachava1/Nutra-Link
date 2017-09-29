@@ -27,6 +27,9 @@ public class TopTenView extends AppCompatActivity {
         Bundle bundle = getIntent().getExtras();
         String name = bundle.getString("TopTenView");
 
+        final Controller controller = new Controller();
+        controller.setNutrientName(name);
+
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setTitle("Top Ten Foods with "+name);
 
