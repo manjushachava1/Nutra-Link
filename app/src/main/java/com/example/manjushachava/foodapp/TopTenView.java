@@ -83,7 +83,10 @@ public class TopTenView extends AppCompatActivity {
         ArrayList<StringValue> objects = new ArrayList<>();
         int pos = controller.getPos();
 
+        Log.d("Jack","meow"+pos);
+
         for (int i = 0; i < foodList.size(); i++) {
+
             Food1 food = foodList.get(i);
             if (pos == 0) {
                 // nutrientValues.add(food.getProximates().getWater());
@@ -139,13 +142,12 @@ public class TopTenView extends AppCompatActivity {
                     Collections.swap(objects, k, objects.size() - k - 1);
                 }
             }
-
-            for (int l = 0; l < 10; l++) {
-                nutrientNames.add(objects.get(i).getName());
-                Log.d("Jack",objects.get(i).getName());
-            }
-            controller.setNutrientNamesArrayList(nutrientNames);
         }
+        for (int l = 0; l < 10; l++) {
+            nutrientNames.add(objects.get(l).getName());
+            Log.d("Manjusha",objects.get(l).getName());
+        }
+        controller.setNutrientNamesArrayList(nutrientNames);
     }
 }
 
