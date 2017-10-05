@@ -74,7 +74,7 @@ public class Proximates1 {
      *
      * @return the amount of lipids
      */
-    public double getLipid1() {
+    public double getLipid() {
 
         return lipid;
     }

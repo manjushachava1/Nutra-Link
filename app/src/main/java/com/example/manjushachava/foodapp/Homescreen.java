@@ -19,15 +19,12 @@ public class Homescreen extends AppCompatActivity {
         private ArrayList<String> foodNames = new ArrayList<String>();
         private Button SearchProduce;
         private Button SearchNutrient;
-        DatabaseHandler myDb;
 
 
         @Override
         protected void onCreate(Bundle savedInstanceState){
             super.onCreate(savedInstanceState);
             setContentView(R.layout.activity_homescreen);
-
-            myDb = new DatabaseHandler(this);
 
             //sends to next activity once buttons are pressed
             initProdAct();

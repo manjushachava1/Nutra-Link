@@ -15,30 +15,12 @@ public class Minerals1 {
 	private double copper;
 	private double manganese;
 	private double selenium;
-	private ArrayList<String> mineralNames = new ArrayList<>();
-
-
 
 	/**
 	 * Creates an empty constructor of the Mineral1 Object
 	 */
 	public Minerals1() {
 
-	}
-	public void createMineralArray(){
-		mineralNames.add("Iron");
-		mineralNames.add("Magnesium");
-		mineralNames.add("Phosphorus");
-		mineralNames.add("Potassium");
-		mineralNames.add("Sodium");
-		mineralNames.add("Zinc");
-		mineralNames.add("Copper");
-		mineralNames.add("Manganese");
-		mineralNames.add("Selenium");
-		mineralNames.add("Calcium");
-		Collections.sort(mineralNames);
-		final Controller controller = new Controller();
-		controller.setMineralArray(mineralNames);
 	}
 	/**
 	 *
