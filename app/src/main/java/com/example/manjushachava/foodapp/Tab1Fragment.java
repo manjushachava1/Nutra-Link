@@ -34,6 +34,13 @@ import com.github.mikephil.charting.listener.OnChartValueSelectedListener;
 import java.util.ArrayList;
 import java.util.Random;
 
+
+import android.widget.TableLayout;
+import android.widget.TableRow;
+import android.widget.TextView;
+import java.lang.Object;
+import android.content.Context;
+
 public class Tab1Fragment extends Fragment {
     private static final String TAG = "Tab1Fragment";
 
@@ -174,6 +181,21 @@ public class Tab1Fragment extends Fragment {
         barChart.setScaleEnabled(false);
         barChart.setDragEnabled(false);
 
+
+        TableLayout table = (TableLayout) view.findViewById(R.id.myTable);
+        for(int i=0;i<yData.size();i++)
+        {
+            TableRow row= new TableRow(tab1_fragment.xml);
+            BarEntry value = yData.get(i);
+            String nutrient = nutriLabels.get(i);
+            TextView tableValue= new TextView(this);
+            tableValue.setText(""+value);
+            TextView tableNutrient= new TextView(this);
+            tableNutrient.setText(""+nutrient);
+            row.addView(tableValue);
+            row.addView(tableNutrient);
+            table.addView(row);
+        }
         barChart.setOnChartValueSelectedListener(new OnChartValueSelectedListener() {
             @Override
             public void onValueSelected(Entry e, Highlight h) {
