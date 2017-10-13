@@ -10,13 +10,15 @@
         android:roundIcon="@mipmap/nutralink_logo"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Homescreen">
+        <activity android:name=".Login">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".Homescreen"
+            android:parentActivityName=".Login"/>
         <activity
             android:name=".NutrientSearch"
             android:parentActivityName=".Homescreen" />
@@ -29,12 +31,18 @@
         <activity
             android:name=".nutrientsView"
             android:parentActivityName=".FoodSearch" />
-        <activity android:name=".About"
+        <activity
+            android:name=".About"
             android:parentActivityName=".Homescreen" />
         <activity
             android:name=".SettingsActivity"
             android:label="@string/title_activity_settings"
             android:parentActivityName=".Homescreen" />
+        <activity
+            android:name=".Register"
+            android:label="@string/title_activity_register"
+            android:theme="@style/AppTheme.NoActionBar">
+        </activity>
     </application>
 
 </manifest>
