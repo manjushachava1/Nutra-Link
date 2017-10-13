@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.app.SearchManager;
 import android.content.Context;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.Menu;
 import android.view.View;
 import android.widget.ExpandableListView;
@@ -35,6 +36,8 @@ public class NutrientSearch extends AppCompatActivity implements
         search.setIconifiedByDefault(false);
         search.setOnQueryTextListener(this);
         search.setOnCloseListener(this);
+
+
 
         // get the listview
         expListView = (ExpandableListView) findViewById(R.id.expandableList);
@@ -137,6 +140,7 @@ public class NutrientSearch extends AppCompatActivity implements
         minerals.add("Copper");
         minerals.add("Manganese");
         minerals.add("Selenium");
+        minerals.add("Calcium");
         Collections.sort(minerals);
 
         List<String> proximate = new ArrayList<>();

@@ -52,10 +52,10 @@ public class nutrientsView extends AppCompatActivity {
 
         //creates an instance of the Controller class to set the user name
         final Controller aController = (Controller) getApplicationContext();
-        aController.setUserName(name);
+        aController.setNutrientName(name);
         Food1 food = aController.searchFood(name);
 
-        aController.setUserName(name);
+        aController.setNutrientName(name);
 
         mSectionsPageAdapter = new SectionsPageAdapter(getSupportFragmentManager());
 

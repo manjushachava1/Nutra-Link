@@ -50,11 +50,11 @@ public class Tab3Fragment extends Fragment {
 
         //creates an instance of the Controller class and gets the user input
         final Controller aController = (Controller) getContext().getApplicationContext();
-        String name = aController.getUserName();
+        String name = aController.getNutrientName();
 
         //searches for the food object from the user input
         Food1 food = aController.searchFood(name);
-        
+
         final ArrayList<String> nutriLabels = new ArrayList<>();
         nutriLabels.add("Water");
         nutriLabels.add("Energy");
@@ -70,7 +70,7 @@ public class Tab3Fragment extends Fragment {
         yData_Base.add((float) food.getProximates().getCarbohydrate());
         yData_Base.add((float)food.getProximates().getEnergy());
         yData_Base.add((float)food.getProximates().getFiber());
-        yData_Base.add((float)food.getProximates().getLipid1());
+        yData_Base.add((float)food.getProximates().getLipid());
         yData_Base.add((float)food.getProximates().getProtein());
         yData_Base.add((float)food.getProximates().getSugar());
         yData_Base.add((float)food.getProximates().getWater());
@@ -134,7 +134,7 @@ public class Tab3Fragment extends Fragment {
         barChart.getDescription().setText("Amount of proximates in: " + food.getName());
         barChart.getAxisRight().setDrawLabels(false);
         barChart.animateY(3000);
-       // barChart.getXAxis().setPosition(XAxis.XAxisPosition.BOTTOM);
+        // barChart.getXAxis().setPosition(XAxis.XAxisPosition.BOTTOM);
         barChart.getLegend().setEnabled(false);
 
         barChart.setScaleEnabled(false);

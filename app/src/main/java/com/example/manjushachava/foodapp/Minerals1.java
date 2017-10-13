@@ -1,5 +1,9 @@
 package com.example.manjushachava.foodapp;
 
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+import java.util.Collections;
+
 public class Minerals1 {
 	private double calcium;
 	private double iron;
@@ -11,7 +15,6 @@ public class Minerals1 {
 	private double copper;
 	private double manganese;
 	private double selenium;
-
 
 	/**
 	 * Creates an empty constructor of the Mineral1 Object

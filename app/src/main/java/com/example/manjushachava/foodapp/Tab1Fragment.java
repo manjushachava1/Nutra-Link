@@ -5,6 +5,7 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -34,6 +35,13 @@ import com.github.mikephil.charting.listener.OnChartValueSelectedListener;
 import java.util.ArrayList;
 import java.util.Random;
 
+
+import android.widget.TableLayout;
+import android.widget.TableRow;
+import android.widget.TextView;
+import java.lang.Object;
+import android.content.Context;
+
 public class Tab1Fragment extends Fragment {
     private static final String TAG = "Tab1Fragment";
 
@@ -46,9 +54,10 @@ public class Tab1Fragment extends Fragment {
         View view = inflater.inflate(R.layout.tab1_fragment, container, false);
 
 
+
         //creates an instance of the Controller class and gets the user input
         final Controller aController = (Controller) getContext().getApplicationContext();
-        String name = aController.getUserName();
+        String name = aController.getNutrientName();
 
         //searches for the food object from the user input
         Food1 food = aController.searchFood(name);
@@ -156,6 +165,9 @@ public class Tab1Fragment extends Fragment {
             colors.add(randomColor);
         }
 
+
+
+
         BarDataSet dataset = new BarDataSet(yData, "Vitamins");
         dataset.setColors(colors);
         BarData data = new BarData(dataset);
@@ -181,11 +193,10 @@ public class Tab1Fragment extends Fragment {
                 Log.d(TAG, "onValueSelected: " + e.toString());
                 Log.d(TAG, "onValueSelected: " + h.toString());
 
-                int pos1 = e.toString().indexOf("(sum): ");
-                int pos2 = (int) h.getX();
-                String value = e.toString().substring((pos2 ) + 7);
-                String nutrient = nutriLabels.get(pos2);
-                Toast.makeText(getActivity(),"Vitamin: " + nutrient + "\n" + value +"ug",Toast.LENGTH_SHORT).show();
+                int pos1 = (int) h.getX();
+                float pos2 = h.getY();
+                String nutrient = nutriLabels.get(pos1);
+                Toast.makeText(getActivity(),"Vitamin: " + nutrient + "\n" + pos2 +"ug",Toast.LENGTH_SHORT).show();
             }
 
             @Override

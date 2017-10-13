@@ -8,7 +8,9 @@
 
     <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true">
 
         <!--<ImageButton-->
         <!--android:src="@drawable/back_button"-->
@@ -28,36 +30,36 @@
         <!--app:layout_constraintHorizontal_bias="0.025"-->
         <!--app:layout_constraintVertical_bias="0.901" />-->
 
+    android:layout_width="368dp"
+    android:layout_height="wrap_content"
+    tools:layout_editor_absoluteY="81dp"
+    tools:layout_editor_absoluteX="8dp">
 
-        <ScrollView
-            android:layout_width="47dp"
-            android:layout_height="120dp"
-            tools:layout_editor_absoluteY="24dp"
-            tools:layout_editor_absoluteX="8dp">
-//please work
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical" />
-        </ScrollView>
 
         <com.github.mikephil.charting.charts.BarChart
             android:id="@+id/idBarChart"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_width="327dp"
+            android:layout_height="142dp"
             android:layout_alignParentBottom="true"
             android:fontFamily="casual"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.624"
+            app:layout_constraintVertical_bias="0.913"
             tools:layout_constraintBottom_creator="1"
-            tools:layout_constraintLeft_creator="1"
             tools:layout_constraintRight_creator="1"
-            tools:layout_constraintTop_creator="1"></com.github.mikephil.charting.charts.BarChart>
+            tools:layout_constraintTop_creator="1"
+            android:layout_marginRight="16dp"
+            android:layout_marginEnd="16dp"></com.github.mikephil.charting.charts.BarChart>
 
 
+        <TableLayout
+            android:id="@+id/myTable"
+            android:layout_width="325dp"
+            android:layout_height="402dp"
+            tools:layout_editor_absoluteX="43dp"
+            tools:layout_editor_absoluteY="8dp"></TableLayout>
+        \
     </android.support.constraint.ConstraintLayout>
 
 </RelativeLayout>
