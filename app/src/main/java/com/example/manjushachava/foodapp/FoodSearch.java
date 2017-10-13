@@ -39,7 +39,9 @@ public class FoodSearch extends AppCompatActivity {
         ArrayList<Food1> foodList = aController.getFoodList();
 
         for (int i = 0; i < foodList.size(); i++) {
-            foodNames.add(foodList.get(i).getName());
+            String name = foodList.get(i).getName().toLowerCase();
+            String s1 = name.substring(0,1).toUpperCase() + name.substring(1);
+            foodNames.add(s1);
         }
         createArrayNames(foodNames);
 
@@ -54,9 +56,9 @@ public class FoodSearch extends AppCompatActivity {
         myList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
-                        Intent nextActivity = new Intent(FoodSearch.this, nutrientsView.class);
-                        nextActivity.putExtra("FoodName",myList.getItemAtPosition(position).toString());
-                        startActivity(nextActivity);
+                Intent nextActivity = new Intent(FoodSearch.this, nutrientsView.class);
+                nextActivity.putExtra("FoodName",myList.getItemAtPosition(position).toString());
+                startActivity(nextActivity);
             }
         });
 
@@ -100,6 +102,6 @@ public class FoodSearch extends AppCompatActivity {
         for(int i = 0; i < foodNamesArr.length; i++){
             foodNamesArr[i] = foodNames.get(i);
         }
-      arrFoodNames = foodNamesArr;
+        arrFoodNames = foodNamesArr;
     }
 }

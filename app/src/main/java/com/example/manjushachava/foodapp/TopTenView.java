@@ -34,8 +34,8 @@ public class TopTenView extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setTitle("Top Ten Foods with " + name);
 
-        NutrientNameVerification nameVerification = new NutrientNameVerification();
-        nameVerification.nameVerification();
+        //NutrientNameVerification nameVerification = new NutrientNameVerification();
+        //nameVerification.nameVerification();
 
         compareNutrientValues();
         topNutrientNames = controller.getNutrientNamesArrayList();

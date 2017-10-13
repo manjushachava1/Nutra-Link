@@ -5,6 +5,7 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -51,6 +52,7 @@ public class Tab1Fragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.tab1_fragment, container, false);
+
 
 
         //creates an instance of the Controller class and gets the user input
@@ -163,6 +165,9 @@ public class Tab1Fragment extends Fragment {
             colors.add(randomColor);
         }
 
+
+
+
         BarDataSet dataset = new BarDataSet(yData, "Vitamins");
         dataset.setColors(colors);
         BarData data = new BarData(dataset);
@@ -181,21 +186,6 @@ public class Tab1Fragment extends Fragment {
         barChart.setScaleEnabled(false);
         barChart.setDragEnabled(false);
 
-
-        TableLayout table = (TableLayout) view.findViewById(R.id.myTable);
-        for(int i=0;i<yData.size();i++)
-        {
-            TableRow row= new TableRow(tab1_fragment.xml);
-            BarEntry value = yData.get(i);
-            String nutrient = nutriLabels.get(i);
-            TextView tableValue= new TextView(this);
-            tableValue.setText(""+value);
-            TextView tableNutrient= new TextView(this);
-            tableNutrient.setText(""+nutrient);
-            row.addView(tableValue);
-            row.addView(tableNutrient);
-            table.addView(row);
-        }
         barChart.setOnChartValueSelectedListener(new OnChartValueSelectedListener() {
             @Override
             public void onValueSelected(Entry e, Highlight h) {
@@ -203,11 +193,10 @@ public class Tab1Fragment extends Fragment {
                 Log.d(TAG, "onValueSelected: " + e.toString());
                 Log.d(TAG, "onValueSelected: " + h.toString());
 
-                int pos1 = e.toString().indexOf("(sum): ");
-                int pos2 = (int) h.getX();
-                String value = e.toString().substring((pos2 ) + 7);
-                String nutrient = nutriLabels.get(pos2);
-                Toast.makeText(getActivity(),"Vitamin: " + nutrient + "\n" + value +"ug",Toast.LENGTH_SHORT).show();
+                int pos1 = (int) h.getX();
+                float pos2 = h.getY();
+                String nutrient = nutriLabels.get(pos1);
+                Toast.makeText(getActivity(),"Vitamin: " + nutrient + "\n" + pos2 +"ug",Toast.LENGTH_SHORT).show();
             }
 
             @Override
