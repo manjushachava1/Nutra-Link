@@ -25,11 +25,10 @@ public class Controller extends Application {
     public Food1 searchFood(String food) {
         for (int i = 0; i < foodList.size(); i++) {
             Food1 test = foodList.get(i);
-            if (test.getName().equals(food)) {
+            if (test.getName().equals(food.toUpperCase())) {
                 return test;
             }
         }
-        Log.d("", "");
         return null;
     }
 
@@ -86,7 +85,7 @@ public class Controller extends Application {
         return pos;
     }
 
-//    //gets and sets the arraylist of food names of nutrients
+    //    //gets and sets the arraylist of food names of nutrients
     public void setNutrientNamesArrayList(ArrayList<String> nutrientNameArray) {
         nutrientNameArrayList = nutrientNameArray;
     }
