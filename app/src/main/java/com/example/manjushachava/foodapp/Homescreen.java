@@ -9,10 +9,11 @@ import android.view.View;
 import android.widget.Button;
 import android.view.MenuItem;
 
+import com.google.firebase.auth.FirebaseAuth;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
-
 public class Homescreen extends AppCompatActivity {
 
         private ArrayList<Food1> foodList;
@@ -105,6 +106,13 @@ public class Homescreen extends AppCompatActivity {
         if(id == R.id.action_about){
             Intent intent = new Intent(this, About.class);
             startActivity(intent);
+            return true;
+        }
+        if(id==R.id.action_signout){
+            FirebaseAuth.getInstance().signOut();
+            Intent intent = new Intent(this, Login.class);
+            startActivity(intent);
+            finish();
             return true;
         }
         return super.onOptionsItemSelected(item);
