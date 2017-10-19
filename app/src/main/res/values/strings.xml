@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">FoodApp</string>
+    <string name="app_name">NutriLink</string>
     <string name="title_activity_nutrient_search">NutrientSearch</string>
     <string name="title_activity_food_data">foodData</string>
     <string name="action_settings">Settings</string>
